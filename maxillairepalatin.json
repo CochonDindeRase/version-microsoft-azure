@@ -1,0 +1,85 @@
+[
+    {
+        "id": 1,
+        "nom": "28",
+        "image": "dents/28P.PNG"
+    },
+    {
+        "id": 2,
+        "nom": "27",
+        "image": "dents/27P.PNG"
+    },
+    {
+        "id": 3,
+        "nom": "26",
+        "image": "dents/26P.PNG"
+    },
+    {
+        "id": 4,
+        "nom": "25",
+        "image": "dents/25P.PNG"
+    },
+    {
+        "id": 5,
+        "nom": "24",
+        "image": "dents/24P.PNG"
+    },
+    {
+        "id": 6,
+        "nom": "23",
+        "image": "dents/23P.PNG"
+    },
+    {
+        "id": 7,
+        "nom": "22",
+        "image": "dents/22P.PNG"
+    },
+    {
+        "id": 8,
+        "nom": "21",
+        "image": "dents/21P.PNG"
+    },
+    {
+        "id": 9,
+        "nom": "11",
+        "image": "dents/11P.PNG"
+    },
+    {
+        "id": 10,
+        "nom": "12",
+        "image": "dents/12P.PNG"
+    },
+    {
+        "id": 11,
+        "nom": "13",
+        "image": "dents/13P.PNG"
+    },
+    {
+        "id": 12,
+        "nom": "14",
+        "image": "dents/14P.PNG"
+    },
+    {
+        "id": 13,
+        "nom": "15",
+        "image": "dents/15P.PNG"
+    },
+    {
+        "id": 14,
+        "nom": "16",
+        "image": "dents/16P.PNG"
+    },
+    {
+        "id": 15,
+        "nom": "17",
+        "image": "dents/17P.PNG"
+    },
+    {
+        "id": 16,
+        "nom": "18",
+        "image": "dents/18P.PNG"
+    }
+]
+
+
+

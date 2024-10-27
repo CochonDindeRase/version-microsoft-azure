@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylepage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&family=Inter:wght@200;300;700&family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle.js"></script> <!--API Speech to Text Microsoft-->
+    <script type="module" src="Chartingpage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Assistance Vocale</title>
+</head>
+<body onload="initialiserMicrophone()">
+    <!--Création d'une navbar en Bootstrap-->
+              <header class="py-4">
+                <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light"> <!--avec navbar-expand (navbar complète) au breakpoint md-->
+                  <div class="container">
+                    <!--Mise en place de la barre-->
+                    <a class="navbar-brand text-uppercase fw-bold" href="#">
+                        <span class="bg-gradient p-1 rounded-3 text-light" style="background-color: rgb(131, 68, 232);">
+                          Statut <!--"Statut" encadré par une span pour ajout d'un background-->
+                        </span> 
+                        <span class="d-none d-sm-inline">Parodontal</span>
+                    </a>
+                        <!-- Ajout d'un ID au bouton hamburger -->
+                        <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!-- Ajout du contenu de la nav-bar et leur localisation respensive (collapse)-->
+                        <div class="collapse navbar-collapse justify-content-end my-2" id="navbarNav"> 
+                        <!--Création d'une liste = horizontal grand écran/vertical petit écran-->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <button class="telechargement-btn">Télécharger</button>
+                            </li> <!--bouton télécharger-->
+                            <li class="nav-item">
+                            <button class="imprimante-btn">Imprimer</button>
+                            </li> <!--bouton imprimer-->
+                        </ul>
+                        </div>
+                  </div>
+                </nav>
+              </header>
+    <!-- Partie Charting -->
+    <section id="Charting" class="py-5 bg-light">
+        <div class="fond" style="background-color: rgba(239, 240, 255, 0.91); border-radius: 16px">
+            <div class="container my-5 py5">
+                <div id="dentmaxvesti">
+                    <div id="graph1" class="graph-container"><canvas></canvas></div>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6">
+                            <section class="dents1"></section>
+                        </div>
+                    </div>
+                </div>
+                <div id="table-container" style="padding: 1%;"></div> <!-- Tableau dents maxillaires vestibulaire -->
+                <div id="dentmandvesti">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6">
+                            <section class="dents2"></section>
+                        </div>
+                    </div>
+                    <div class="inverted-y-axis-container">
+                        <div id="graph2" class="graph-container"><canvas></canvas></div>
+                    </div>
+                </div>
+                <div id="second-table-container" style="padding: 1%;"></div> <!-- Tableau dents mandibulaires vestibulaire -->
+                <div id="dentmaxpal">
+                    <div id="graph3" class="graph-container"><canvas></canvas></div>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6">
+                            <section class="dents3"></section>
+                        </div>
+                    </div>
+                    <div id="third-table-container" style="padding: 1%;"></div> <!-- Tableau dents maxillaires palatin -->
+                    <div id="dentmandling">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6">
+                                <section class="dents4"></section>
+                            </div>
+                            <div class="inverted-y-axis-container">
+                                <div id="graph4" class="graph-container"><canvas></canvas></div>
+                            </div>
+                        </div>
+                        <div id="quatre-table-container" style="padding: 1%;"></div> <!-- Tableau dents mandibulaires linguale -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                        <!--Pourcentages-->
+                        <div class="both-progress-container">
+                            <div class="single-progress-container plaque">
+                              <span class="label-text">PLAQUE</span>
+                              <div class="progress">
+                                <div id="plaque-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <span id="plaque-percentage">0%</span>
+                            </div>
+                            <div class="single-progress-container saignement">
+                                <span class="label-text">SAIGNEMENT</span>
+                                <div class="progress">
+                                  <div id="saignement-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span id="saignement-percentage">0%</span>
+                              </div>
+                            </div>
+
+        <!--Animation impression téléchargement-->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        
+        
+    </section>
+
+    <div id="new-loading-spinner"></div>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Comportement du scroll 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.graph-container');
+            let currentSectionIndex = getClosestSectionIndex(); // Initialiser avec la section actuellement visible
+            let scrollTimeout = null;
+
+            function getClosestSectionIndex() {
+                let closestIndex = 0;
+                let closestDist = Infinity;
+                sections.forEach((section, index) => {
+                    const dist = Math.abs(window.pageYOffset - section.offsetTop);
+                    if (dist < closestDist) {
+                        closestDist = dist;
+                        closestIndex = index;
+                    }
+                });
+                return closestIndex;
+            }
+
+            function scrollToSection(index) {
+                if (index >= 0 && index < sections.length) {
+                    window.scrollTo({
+                        top: sections[index].offsetTop,
+                        behavior: 'smooth'
+                    });
+                    currentSectionIndex = index; // Mise à jour de l'index de la section actuelle après le défilement
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout); // Annuler tout timeout précédent
+                scrollTimeout = setTimeout(() => {
+                    const newClosestSectionIndex = getClosestSectionIndex();
+                    // Vérifier si la position actuelle de défilement est plus proche d'une autre section
+                    if (newClosestSectionIndex !== currentSectionIndex) {
+                        // Si la position de défilement est plus proche d'une autre section, ajuster la vue
+                        scrollToSection(newClosestSectionIndex);
+                    } else {
+                        // Si la position de défilement est toujours plus proche de la section actuelle, réajuster la vue
+                        scrollToSection(currentSectionIndex);
+                    }
+                }, 100); // Délai avant de considérer le défilement comme terminé et de prendre une décision
+            });
+        });
+    </script>
+    -->
+
+<script>
+    let currentInputIndex = 0;
+    let inputs;
+    let isProcessingCommand = false;
+    let processedCommands = new Set(); // Ensemble des commandes déjà traitées
+    let isVoiceCommand = false;
+
+    // Liste des variations orthographiques pour chaque commande
+    const commandSynonyms = {
+        "saignement vestibulaire": ["saignement vestibulaire", "saignements vestibulaires", "enseignement vestibulaire"],
+        "saignement mésial": ["saignement mésial", "saignements mésial", "méssial"],
+        // Ajoute des variations pour les autres commandes ici...
+    };
+
+    // Fonction pour normaliser la commande
+    function normalizeCommand(command) {
+        for (let key in commandSynonyms) {
+            if (commandSynonyms[key].includes(command)) {
+                return key; // Retourne la commande normalisée
+            }
+        }
+        return command; // Si aucune variation n'est trouvée, retourne la commande originale
+    }
+
+    // Clé API Azure et région
+    const subscriptionKey = "4d084ab2c53e4dbf9e491c0fe16507d6";
+    const serviceRegion = "francecentral";
+
+    // Initialiser le microphone
+    function initialiserMicrophone() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then((stream) => {
+                console.log("Accès au microphone accordé.");
+                startVoiceRecognition();
+            })
+            .catch((err) => {
+                console.error("Accès au microphone refusé ou bloqué :", err);
+                alert("L'accès au microphone est requis pour utiliser l'assistance vocale.");
+            });
+    }
+
+    // Débloquer la synthèse vocale (haut-parleurs)
+    function unlockAudioContext() {
+        document.body.addEventListener('click', () => {
+            const utterance = new SpeechSynthesisUtterance('');
+            speechSynthesis.speak(utterance);
+            console.log('Haut-parleurs débloqués via interaction utilisateur');
+        }, { once: true });
+    }
+
+    // Fonction pour afficher le nouveau cercle de chargement
+    function showNewLoadingSpinner() {
+        console.log("Affichage du nouveau cercle de chargement.");
+        const spinner = document.getElementById('new-loading-spinner');
+        if (spinner) {
+            spinner.style.display = 'block'; // Afficher le spinner
+        }
+    }
+
+    // Fonction pour masquer le nouveau cercle de chargement
+    function hideNewLoadingSpinner() {
+        console.log("Masquage du nouveau cercle de chargement.");
+        const spinner = document.getElementById('new-loading-spinner');
+        if (spinner) {
+            spinner.style.display = 'none'; // Masquer le spinner
+        }
+    }
+
+    // Démarrer la reconnaissance vocale
+    function startVoiceRecognition() {
+        const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, serviceRegion);
+        speechConfig.speechRecognitionLanguage = "fr-FR";
+        const audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+        const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+        // Afficher le cercle dès que l'API détecte un son (avant la reconnaissance du texte)
+        recognizer.recognizing = (s, event) => {
+            console.log('Son détecté, affichage du cercle de chargement.');
+            showNewLoadingSpinner(); // Afficher le cercle dès que du son est détecté
+        };
+
+        // Traiter les résultats de la reconnaissance
+        recognizer.recognized = (s, event) => {
+            console.log('Texte reconnu:', event.result.text);
+            if (isProcessingCommand) return;
+            const command = event.result.text.trim().toLowerCase();
+            processVoiceCommand(command); // Traiter la commande
+        };
+
+        recognizer.onerror = (event) => {
+            console.error('Erreur de reconnaissance vocale:', event.error);
+            hideNewLoadingSpinner(); // Masquer le cercle en cas d'erreur
+        };
+
+        recognizer.onend = () => {
+            hideNewLoadingSpinner(); // Masquer le cercle à la fin de la reconnaissance
+            setTimeout(() => recognizer.start(), 50); // Redémarrer la reconnaissance
+        };
+
+        recognizer.startContinuousRecognitionAsync();
+    }
+
+    // Traiter les commandes vocales
+    function processVoiceCommand(command) {
+        console.log("Commande à traiter:", command);
+        isProcessingCommand = true;
+
+        // Normaliser la commande pour éviter les variations orthographiques
+        const normalizedCommand = normalizeCommand(command);
+
+        if (normalizedCommand.includes("retour")) {
+            focusPreviousInput();  // Déplacement vers le champ précédent
+        } else if (normalizedCommand.includes("un") || normalizedCommand.includes("une")) {
+            fillInputFields([1], normalizedCommand); // Passer la commande vocale
+        } else if (normalizedCommand.includes("deux") || normalizedCommand.includes("de")) {
+            fillInputFields([2], normalizedCommand); // Passer la commande vocale
+        } else if (normalizedCommand.match(/saignement|plaque/)) {
+            handleCheckboxCommand(normalizedCommand); // Traiter les cases à cocher
+        } else {
+            const values = normalizedCommand.match(/\d+/g);
+            if (values) {
+                fillInputFields(values, normalizedCommand); // Passer la commande vocale
+            }
+        }
+
+        setTimeout(() => {
+            hideNewLoadingSpinner(); // Masquer après traitement
+            isProcessingCommand = false;
+        }, 500); // Délai général pour masquer
+    }
+
+// Remplir les champs de saisie avec gestion des signes
+function fillInputFields(values, command) {
+    const activeElement = document.activeElement;
+    console.log("Remplissage du champ avec la valeur:", values[0], "dans l'élément:", activeElement);
+
+    if (activeElement && activeElement.tagName === 'INPUT' && activeElement.type === 'text') {
+        isVoiceCommand = true; // Indique que la commande vocale est en cours
+
+        let value = values[0];
+
+        // Si l'utilisateur spécifie "plus" ou "moins", ajuster le signe
+        if (command && (command.includes("plus") || command.includes("+"))) {
+            console.log("Commande 'plus' détectée, valeur positive.");
+            value = Math.abs(value); // S'assurer que la valeur est positive
+        } else if (isNiveauGingivalLine(activeElement)) {
+            console.log("Valeur négative par défaut pour 'Niveau Gingival'.");
+            value = -Math.abs(value); // Valeur négative par défaut
+        }
+
+        activeElement.value = value; // Remplir le champ avec la valeur
+        activeElement.dispatchEvent(new Event('input'));
+        speakValue(value);
+        simulateEnterKeyPress(activeElement); // Simuler "Enter" pour passer au champ suivant
+
+        setTimeout(() => {
+            isVoiceCommand = false; // Désactiver après la fin de la commande vocale
+        }, 500);
+    }
+}
+
+
+    // Vérifie si le champ actif est dans la deuxième ligne (Niveau Gingival)
+    function isNiveauGingivalLine(inputElement) {
+        const row = inputElement.closest('tr');
+        const rowIndex = row.rowIndex; // Indice de la ligne dans le tableau
+        return rowIndex === 1; // Cible spécifiquement la deuxième ligne du tableau
+    }
+
+    // Simuler la touche "Entrée"
+    function simulateEnterKeyPress(inputElement) {
+        console.log("Simulation de la touche 'Entrée' dans l'élément:", inputElement);
+        const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true });
+        inputElement.dispatchEvent(event);
+    }
+
+// Ajoutez cette fonction pour calculer le pourcentage de plaque
+function calculatePlaquePercentage() {
+  const plaqueCheckboxes = document.querySelectorAll('.custom-checkbox2');
+  const totalPlaqueCheckboxes = plaqueCheckboxes.length;
+  const checkedPlaqueCheckboxes = Array.from(plaqueCheckboxes).filter(checkbox => checkbox.checked).length;
+
+  const percentage = (checkedPlaqueCheckboxes / totalPlaqueCheckboxes) * 100;
+  return percentage.toFixed(2); // Retourne le pourcentage avec 2 décimales
+}
+
+// Mettez à jour le pourcentage de plaque dans le DOM et remplissez la barre de progression
+function updatePlaquePercentage() {
+  const percentage = calculatePlaquePercentage();
+  document.getElementById('plaque-percentage').textContent = `${percentage}%`;
+  
+  const plaqueBar = document.getElementById('plaque-bar');
+  plaqueBar.style.width = `${percentage}%`; // Ajuste la largeur de la barre en fonction du pourcentage
+  plaqueBar.setAttribute('aria-valuenow', percentage);
+}
+
+// Ajoutez cette fonction pour calculer le pourcentage de saignement
+function calculateSaignementPercentage() {
+  const saignementCheckboxes = document.querySelectorAll('.custom-checkbox3');
+  const totalSaignementCheckboxes = saignementCheckboxes.length;
+  const checkedSaignementCheckboxes = Array.from(saignementCheckboxes).filter(checkbox => checkbox.checked).length;
+
+  const percentage = (checkedSaignementCheckboxes / totalSaignementCheckboxes) * 100;
+  return percentage.toFixed(2); // Retourne le pourcentage avec 2 décimales
+}
+
+// Mettez à jour le pourcentage de saignement dans le DOM et remplissez la barre de progression
+function updateSaignementPercentage() {
+  const percentage = calculateSaignementPercentage();
+  document.getElementById('saignement-percentage').textContent = `${percentage}%`;
+  
+  const saignementBar = document.getElementById('saignement-bar');
+  saignementBar.style.width = `${percentage}%`; // Ajuste la largeur de la barre en fonction du pourcentage
+  saignementBar.setAttribute('aria-valuenow', percentage);
+}
+
+// Gérer les cases à cocher via commandes vocales
+function handleCheckboxCommand(command) {
+    console.log("Commande détectée pour case à cocher:", command);
+
+    const defaultPositionMap = {
+        'mésio': 2, 'vestibulaire': 1, 'palatin': 1, 'disto': 0, 'distal': 0,
+        'mésial': 2, 'méziale': 2, 'métiale': 2, 'méssiale': 2, 'mézial': 2,
+        'métial': 2, 'méssial': 2
+    };
+
+    const modifiedPositionMap = {
+        'mésio': 0, 'vestibulaire': 1, 'palatin': 1, 'disto': 2, 'distal': 2,
+        'mésial': 0, 'méziale': 0, 'métiale': 0, 'méssiale': 0, 'mézial': 0,
+        'métial': 0, 'méssial': 0
+    };
+
+    const positionIdentifiers = command.match(/mésio|vestibulaire|palatin|disto|distal|mésial|méziale|métiale|méssiale|mézial|métial|méssial/g);
+    const rowIdentifier = command.match(/saignement|plaque/i);
+
+    if (positionIdentifiers && rowIdentifier) {
+        console.log("Commande case détectée:", rowIdentifier[0], positionIdentifiers);
+        const table = document.activeElement.closest('table');
+        const columnIdx = document.activeElement.closest('td').cellIndex;
+        const rowIdx = rowIdentifier[0].toLowerCase() === "saignement" ? 4 : 5;
+        const targetRow = table.querySelector(`tr:nth-child(${rowIdx})`);
+        const targetCell = targetRow.querySelector(`td:nth-child(${columnIdx + 1})`);
+        const checkboxes = targetCell.querySelectorAll('input[type="checkbox"]');
+
+        positionIdentifiers.forEach((identifier) => {
+            const positionIdx = columnIdx >= 8 ? modifiedPositionMap[identifier] : defaultPositionMap[identifier];
+            if (checkboxes && checkboxes[positionIdx]) {
+                // Cocher ou décocher la case et déclencher l'événement change
+                checkboxes[positionIdx].checked = !checkboxes[positionIdx].checked;
+                checkboxes[positionIdx].dispatchEvent(new Event('change')); // Déclencher l'événement 'change'
+                console.log("Case", identifier, "cochée/décochée.");
+            }
+        });
+
+        // Utilisation d'un délai pour laisser le temps à l'assistant de continuer après la mise à jour
+        setTimeout(() => {
+            if (rowIdentifier[0].toLowerCase() === "saignement") {
+                updateSaignementPercentage(); // Mettre à jour le pourcentage pour saignement
+            } else if (rowIdentifier[0].toLowerCase() === "plaque") {
+                updatePlaquePercentage(); // Mettre à jour le pourcentage pour plaque
+            }
+        }, 100); // Petit délai pour éviter l'interruption
+
+        // Faire parler la commande après traitement
+        speakCommand(`${rowIdentifier} ${positionIdentifiers.join(' ')}`);
+    }
+}
+
+
+
+    // Prononcer la valeur
+    function speakValue(value) {
+        console.log("Prononciation de la valeur:", value);
+        const utterance = new SpeechSynthesisUtterance(value);
+        utterance.lang = 'fr-FR';
+        speechSynthesis.speak(utterance);
+    }
+
+    // Prononcer la commande
+    function speakCommand(command) {
+        console.log("Prononciation de la commande:", command);
+        const utterance = new SpeechSynthesisUtterance(command);
+        utterance.lang = 'fr-FR';
+        speechSynthesis.speak(utterance);
+    }
+
+    // Déplacer le focus vers le champ précédent
+    function focusPreviousInput() {
+    const currentInput = document.activeElement;
+    const inputs = Array.from(document.querySelectorAll('input[type="text"]'));
+    const currentIndex = inputs.indexOf(currentInput);
+
+    if (currentIndex <= 0) {
+        console.log("Vous êtes déjà sur le premier élément.");
+        return;
+    }
+
+    // Boucle pour rechercher la cellule visible précédente
+    for (let i = currentIndex - 1; i >= 0; i--) {
+        const previousInput = inputs[i];
+        const cell = previousInput.closest('td');
+        
+        // Vérifier que la cellule est visible et qu'elle est différente de la cellule actuelle
+        if (cell && getComputedStyle(cell).display !== 'none' && cell !== currentInput.closest('td')) {
+            // Obtenir tous les champs de saisie dans la cellule précédente visible
+            const visibleInputs = Array.from(cell.querySelectorAll('input[type="text"]')).filter(input => getComputedStyle(input).visibility !== 'hidden');
+            
+            // Si plusieurs champs sont trouvés, prendre le dernier
+            if (visibleInputs.length > 0) {
+                const lastVisibleInput = visibleInputs[visibleInputs.length - 1];
+                console.log("Retour au dernier champ visible dans la cellule précédente:", lastVisibleInput);
+                lastVisibleInput.focus();
+                lastVisibleInput.select();
+                return;
+            }
+        }
+    }
+
+    console.log("Aucun élément précédent visible trouvé.");
+}
+
+
+    // Initialisation des champs de saisie
+    document.addEventListener('DOMContentLoaded', () => {
+        inputs = document.querySelectorAll('input[type="text"]');
+        unlockAudioContext();
+        initialiserMicrophone();
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('focus', () => {
+                console.log("Focus sur l'élément d'index:", index);
+                currentInputIndex = index;
+            });
+            input.addEventListener('input', () => speakValue(input.value));
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    let nextInput = findNextVisibleInput(input);
+                    if (nextInput) {
+                        console.log("Focus sur l'élément suivant:", nextInput);
+                        nextInput.focus();
+                        nextInput.select();
+                    } else {
+                        const targetRowIndex = input.closest('tr').rowIndex;
+                        const currentTableIndex = tableContainers.indexOf(input.closest('table').parentNode.id);
+                        nextInput = findFirstVisibleInputInNextTable(currentTableIndex, targetRowIndex);
+                        if (nextInput) {
+                            console.log("Focus sur l'élément dans la table suivante:", nextInput);
+                            nextInput.focus();
+                            nextInput.select();
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+    // Navigation entre les champs de saisie
+    function findNextVisibleInput(currentInput) {
+    const inputs = Array.from(document.querySelectorAll('input[type="text"]')); // Liste de tous les champs
+    const currentIndex = inputs.indexOf(currentInput); // Obtenir l'index du champ actuel
+
+    // Vérifie le champ suivant dans l'ordre du DOM
+    for (let i = currentIndex + 1; i < inputs.length; i++) {
+        const nextInput = inputs[i];
+        if (nextInput && getComputedStyle(nextInput).visibility !== 'hidden') {
+            return nextInput;
+        }
+    }
+    return null;
+}
+
+
+    function findFirstVisibleInputInNextTable(currentTableIndex, targetRowIndex) {
+        const nextTableIndex = getNextTableIndex(currentTableIndex);
+        const nextTableContainer = document.getElementById(tableContainers[nextTableIndex]);
+        let nextInput = nextTableContainer.querySelector(`tr:nth-child(${targetRowIndex + 1}) td input[type="text"]:not([style*="visibility: hidden"])`);
+        if (!nextInput) nextInput = nextTableContainer.querySelector('tr td input[type="text"]:not([style*="visibility: hidden"])');
+        return nextInput;
+    }
+
+    function getNextTableIndex(currentTableIndex) {
+        return (currentTableIndex + 1) % tableContainers.length;
+    }
+
+    const tableContainers = ['table-container', 'second-table-container', 'third-table-container', 'quatre-table-container'];
+</script>
+
+
+
+
+
+
+<!--Fermeture menu hamburger-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbarToggler = document.getElementById('navbar-toggler');
+        const navbarNav = document.getElementById('navbarNav');
+
+        document.addEventListener('click', function(event) {
+            const isClickInside = navbarNav.contains(event.target) || navbarToggler.contains(event.target);
+
+            if (!isClickInside) {
+                // Si le clic est à l'extérieur du menu déroulant, fermer le menu
+                const bsCollapse = new bootstrap.Collapse(navbarNav, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            }
+        });
+
+        navbarToggler.addEventListener('click', function() {
+            const bsCollapse = new bootstrap.Collapse(navbarNav, {
+                toggle: false
+            });
+
+            if (navbarNav.classList.contains('show')) {
+                bsCollapse.hide();
+            } else {
+                bsCollapse.show();
+            }
+        });
+    });
+</script>
+
+<!--Nav bar disparait en scrollant vers le bas puis réapprait en allant tout en haut-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) { // Ajustez la valeur selon vos besoins
+                navbar.classList.remove('fixed-top');
+            } else {
+                navbar.classList.add('fixed-top');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

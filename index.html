@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> <!--permet d'intégrer le Bootstrap (responsive, /!\ a mettre avec le lien vers le fichier CSS)-->
+    <link rel="stylesheet" href="style.css" /> <!--lie au fichier CSS-->
+    <!--style de police-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&family=Inter:wght@200;300;700&family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--lie à la librairie Chart.JS (après avoir ajouter les fichiers depuis le terminal)-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script> <!--lier au C3.css et au D3.js (graphique utilisé en complément de Chartjs)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script> <!--rend possible le téléchargement-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script> <!--télécharge en pdf-->    
+    <script type="module" src="Charting.js"></script> <!--lie au fichier JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--permet d'ouvrir une petite fenêtre pour l'assistance vocale-->
+    <script>
+
+      function ouvrirNouvelleFenetre(largeur, hauteur, posX, posY) {
+        var options = 'width=' + largeur + ',height=' + hauteur +
+                      ',top=' + posY + ',left=' + posX +
+                      ',toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no';
+       return window.open('page.html', 'Nouvelle Fenêtre', options);
+      }
+
+    </script>
+    <title>Vocal Charting</title>
+
+  </head>
+        <body>
+          <!--Création d'une navbar en Bootstrap-->
+          <header class="py-4">
+            <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light"> <!--avec navbar-expand (navbar complète) au breakpoint md-->
+              <div class="container">
+                <!--Mise en place de la barre-->
+                <a class="navbar-brand text-uppercase fw-bold" href="#">
+                  <span class="bg-gradient p-1 rounded-3 text-light" style="background-color: rgb(131, 68, 232);">
+                    Statut <!--"Statut" encadré par une span pour ajout d'un background-->
+                  </span> 
+                  <span class="d-none d-sm-inline">Parodontal</span>
+                </a>
+                <!-- Ajout bouton hamburger -->
+                <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Ajout du contenu de la nav-bar et leur localisation respensive (collapse)-->
+                <div class="collapse navbar-collapse justify-content-end my-2" id="navbarNav"> 
+                  <!--Création d'une liste = horizontal grand écran/vertical petit écran-->
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <button class="telechargement-btn">Télécharger</button>
+                    </li> <!--bouton télécharger-->
+                    <li class="nav-item">
+                      <button class="imprimante-btn">Imprimer</button>
+                    </li> <!--bouton imprimer-->
+                    <li class="nav-item">
+                      <a class="nav-link" href="#Utilisation">Utilisation</a>
+                    </li> <!--lien vers partie utilisation-->
+                    <li class="nav-item">
+                      <a class="nav-link" href="#Contact">Contact</a>
+                    </li> <!--lien vers partie contact-->
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </header>
+
+          <main>
+            <!-- Intro -->
+            <section id="Intro">
+              <div class="container py-5 ">
+                <div class="row gy-4 align-items-center">
+                  <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Statut <b class="fw-bold">Parodontal</b> en ligne</h1>
+                    <h2 class="fw-light">Bienvenue</h2>
+                    <!-- Lien vers Assistance Vocale (ouvrir un nouvel onglet)-->
+                    <a id="Vocale" class="py-1 bg-light">
+                      <div class="col-12 col-md-6">
+                        <button id="vocaleButton" onclick="ouvrirNouvelleFenetre(320, 540, 11000, 11000)" class="btn mt-3 text-light fs-5" style="background-color: rgb(43, 0, 112); ">Lien vers Assistance Vocale</button>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            
+
+            
+
+        <!-- Partie Charting -->
+          <div id="printable-charting">
+            <section id="Charting" class="py-5 bg-light">
+              <!-- Conteneur pour le défilement horizontal -->
+              <div class="scroll-container">
+                <!--Fond second theme color-->
+                <div class="fond">
+              <div class="container my-5 py5">
+                <!--Dents issu du fichier JSON et Tableaux-->
+                  <!--Dents Maxillaire Vestibulaires-->
+                <div id="table-container" style="padding : 1%;"></div> <!--Tableau dents maxillaires vestibulaire-->
+                <div id="graph1" class="graph-container"><canvas></canvas></div>
+                <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <section class="dents1"></section>
+                </div>
+                <!--Dents Mandibulaires Vestibulaires-->
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <section class="dents2"></section>
+                </div>
+                <div class="inverted-y-axis-container">
+                <div id="graph2" class="graph-container"><canvas></canvas></div>  
+                </div>          
+                  <div id="second-table-container" style="padding : 1%;"></div> <!--Tableau dents mandibulaires vestibulaire-->
+
+                <!--Pourcentages-->
+                <div class="both-progress-container">
+                  <div class="single-progress-container plaque">
+                    <span class="label-text">PLAQUE</span>
+                    <div class="progress">
+                      <div id="plaque-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span id="plaque-percentage">0%</span>
+                  </div>
+                
+                  <div class="single-progress-container saignement">
+                    <span class="label-text">SAIGNEMENT</span>
+                    <div class="progress">
+                      <div id="saignement-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span id="saignement-percentage">0%</span>
+                  </div>
+                </div>
+
+                <!--Dents Maxillaire Palatins-->
+                <div id="third-table-container" style="padding : 1%;"></div> <!--Tableau dents maxillaires palatin-->
+                <div id="graph3" class="graph-container"><canvas></canvas></div>               
+                  <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <section class="dents3"></section>
+                </div>
+                <!--Dents Mandibulaires Linguales-->
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <section class="dents4"></section>
+                </div>
+                <div class="inverted-y-axis-container">
+                  <div id="graph4" class="graph-container"><canvas></canvas></div>  
+                  </div>                 
+                <div id="quatre-table-container" style="padding : 1%;"></div> <!--Tableau dents mandibulaires linguale-->
+              </div>
+              </div>
+              </div>
+              <!--Animation impression téléchargement-->
+              <div id="loading-overlay" class="loading-overlay">
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            
+            </section>
+          </div>
+
+
+            <!--Partie Utilisation-->
+            <section id="Utilisation" class="py-5 ">
+              <div class="container">
+                <h2 class="mb-0">Utilisation</h2>
+                <h3 class="fw-light fs-5">Besoin d'aide ?</h3>
+              </div>
+            
+            <!--Premier item-->
+              <div class="row gy-4 gy-md-0 mt-4">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> <!--3 éléments puis 1 pout les smallphones-->
+                  <div class="card">
+                    <img src="Bouchesucre.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Sondage Parodontal</h5>
+                      <p class="card-text">Les règles du sondage parodontal</p>
+                      <a class="btn" data-bs-toggle="offcanvas" data-bs-target="#infoProjet1"
+                        aria-controls="infoProjet1" style = "background-color : #eff0ff">En savoir plus</a> <!--Bouton donnant sur pseudo item-->
+                    </div>
+
+                    <!--Pseudo onglet-->
+                    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="infoProjet1"
+                        aria-labelledby="titelProjet1">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="titelProjet1">Sondage Parodontal</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <!-- Carousel -->
+                        <div id="carouselProject1" class="carousel slide shadow h-100" data-bs-ride="carousel"
+                            data-bs-touch="true">
+                          <div class="carousel-inner h-100">
+                            <div class="carousel-item h-100 active" data-bs-interval="10000">
+                              <img src="Charting1.png" class="d-block w-100" alt="Image slide 1">
+                              <div class="carousel-caption d-block" style="color: black; background-color: rgba(245, 245, 245, 0.753); border: 2mm ridge rgba(0, 0, 0, 0.637);">
+                                <h5>Qu'est-ce que c'est ?</h5>
+                                <p>Le sondage parodontal permet d'évaluer l'état de santé des tissus de soutien de la dent en mesurant la perte d'attache des tissus parodontaux.</p>
+                            </div>
+                            </div>
+                            <div class="carousel-item h-100" data-bs-interval="2000">
+                              <img src="Charting2.png" class="d-block w-100" alt="Image slide 2">
+                            <div class="carousel-caption d-block" style="color: black; background-color: rgba(245, 245, 245, 0.753); border: 2mm ridge rgba(0, 0, 0, 0.637);">
+                                <h5>Comment ?</h5>
+                                <p>Le sondage se réalise en vision directe, avec un bon éclairage et la lecture se fait perpendiculairement à la graduation.</p>
+                                <p>Le point de référence est important et la pression doit être constante afin d'éviter les variations intra-opérateur.</p>
+                                <p>Il est également utile de rapporter la présence de plaque ou de saignement au niveau des différents sites de sondage.</p>
+                            </div>
+                            </div>
+                            <div class="carousel-item h-100" data-bs-interval="2000">
+                              <img src="smile.png" class="d-block w-100" alt="Image slide 2">
+                            <div class="carousel-caption d-block" style="color: black; background-color: rgba(245, 245, 245, 0.753); border: 2mm ridge rgba(0, 0, 0, 0.637);">
+                                <p>On compte 6 sites de sondage pour chaque dent :<br /> 
+                                    en mésial, en distal et au centre des faces lingual/palatine et vestibulaire. </p>
+                                <p>Il y a 2 mesures pour chaque site : le niveau gingival* et la profondeur de sondage**.</p>
+                            </div>
+                            
+                            <div class="carousel-caption d-block" style="color: rgb(0, 0, 0); text-align: start; font-size: xx-small; top: 85%; left: 16%;">
+                                <p>*distance entre la jonction email-cément et le sommet de la gencive marginale.</p>
+                            </div>
+                            
+                            <div class="carousel-caption d-block" style="color: rgb(0, 0, 0); text-align: start; font-size: xx-small; top: 85%; left: 59%;">
+                                <p>**distance entre le sommet de la gencive marginale et le fond de la poche.</p>
+                            </div>
+                            
+                          </div>
+                          </div>
+                          <!--Boutons de défilement-->
+                          <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#carouselProject1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#carouselProject1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Second item-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="card">
+                    <img src="Capture.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Tableau</h5>
+                      <p class="card-text">Comment utiliser le tableau parodontal en ligne ?</p>
+                      <a class="btn" data-bs-toggle="offcanvas" data-bs-target="#infoProjet2"
+                        aria-controls="infoProjet2" style = "background-color : #eff0ff">En savoir plus</a>
+                    </div>
+                    <!--Pseudo onglet-->
+                    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="infoProjet2"
+                        aria-labelledby="titelProjet2">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="titelProjet1">Tableau</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <!-- Carousel -->
+                        <div id="carouselProject2" class="carousel slide shadow h-100" data-bs-ride="carousel"
+                            data-bs-touch="true">
+                          <div class="carousel-inner h-100">
+                            <div class="carousel-item h-100 active" data-bs-interval="10000">
+                              <img src="mobilite.PNG" class="d-block w-100" alt="Image slide 1">
+                            </div>
+                            <div class="carousel-item h-100" data-bs-interval="2000">
+                              <img src="Furcation.PNG" class="d-block w-100" alt="Image slide 2">
+                            </div>
+                            <div class="carousel-item h-100">
+                              <img src="Implant.PNG" class="d-block w-100" alt="Image slide 3">
+                            </div>
+                            <div class="carousel-item h-100" data-bs-interval="10000">
+                              <img src="Plaque.PNG" class="d-block w-100" alt="Image slide 1">
+                            </div>
+                            <div class="carousel-item h-100" data-bs-interval="2000">
+                              <img src="Saignement.PNG" class="d-block w-100" alt="Image slide 2">
+                            </div>
+                            <div class="carousel-item h-100">
+                              <img src="Niv.PNG" class="d-block w-100" alt="Image slide 3">
+                            </div>
+                          </div>
+                          <!--Boutons de défilement-->
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2"
+                                  data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2"
+                                  data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Troisième item-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="card">
+                    <img src="Assist3.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Assistance vocale</h5>
+                      <p class="card-text">Comment utiliser l'assistance vocale en ligne ?</p>
+                      <a class="btn" data-bs-toggle="offcanvas" data-bs-target="#infoProjet3"
+                        aria-controls="infoProjet3" style = "background-color : #eff0ff">En savoir plus</a>
+                    </div>
+                    <!--Pseudo onglet-->
+                    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="infoProjet3"
+                        aria-labelledby="titelProjet3">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="titelProjet1">Assistance Vocale</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <!-- Carousel -->
+                        <div id="carouselProject3" class="carousel slide shadow h-100" data-bs-ride="carousel"
+                            data-bs-touch="true">
+                          <div class="carousel-inner h-100">
+                            <div class="carousel-item h-100 active" data-bs-interval="10000">
+                              <img src="AV1.PNG" class="d-block w-100" alt="Image slide 1">
+                            </div>
+                            <div class="carousel-item h-100">
+                              <img src="AV4.PNG" class="d-block w-100" alt="Image slide 3">
+                            </div>
+                          </div>
+                          <!--Boutons de défilement-->
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject3"
+                                  data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselProject3"
+                                  data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </section>
+              </main>
+
+              <!--Partie Contact-->
+              <section id="Contact" class="py-5 bg-light">
+                <div class="container">
+                  <h2 class="mb-0">Contact</h2>
+                  <h3 class="fw-light fs-5">Leo.HOSPITAL@etu.uca.fr</h3>
+                </div>
+              </section>
+
+            </main>
+
+            <footer class="border-top">
+              <div class="container py-5">
+                <div class="row gy-4 align-items-center">
+                  <div class="col-12 col-md-4">
+                    <a class="navbar-brand text-dark text-uppercase fw-bold fs-6" href="#">
+                      <span class="bg-gradient p-1 rounded-3 text-light" style="background-color: rgb(131, 68, 232);">Statut</span> Parodontal
+                    </a>
+                  </div>
+                  <div class="col-12 col-md-4 text-md-center">
+                    <ul class="list-unstyled mb-0">
+                      <li>
+                        <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal"
+                          data-bs-target="#mentionsLegales">Mentions légales</a> <!--lien vers pseudo onglet mentions légales-->
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Pseudo onglet Mentions Légales -->
+              <div class="modal fade" id="mentionsLegales" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Mentions Légales</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tellus leo, volutpat vitae
+                        mi
+                        ultrices,
+                        sollicitudin
+                        blandit dui. Mauris ultricies iaculis leo id consequat. Class aptent taciti sociosqu ad
+                        litora
+                        torquent
+                        per conubia
+                        nostra, per inceptos himenaeos. Sed posuere risus viverra ornare porttitor. Nullam egestas
+                        nec
+                        libero eget
+                        sagittis.
+                        Phasellus vulputate ante a vulputate vehicula. Suspendisse nec dolor ante.
+                      </p>
+                      <p>
+                        Nunc auctor semper turpis. Duis quam velit, aliquam ut mi vel, sollicitudin dapibus erat.
+                        Etiam
+                        vitae
+                        malesuada urna.
+                        Vestibulum scelerisque lacus at molestie cursus. Donec placerat enim id enim feugiat
+                        gravida.
+                        Integer ut
+                        maximus libero.
+                        Nulla faucibus dolor vitae varius rutrum. Nunc neque sem, convallis id lorem quis, vulputate
+                        imperdiet
+                        eros. Donec
+                        viverra commodo congue.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!--Fermeture menu hamburger-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbarToggler = document.getElementById('navbar-toggler');
+      const navbarNav = document.getElementById('navbarNav');
+
+      document.addEventListener('click', function(event) {
+          const isClickInside = navbarNav.contains(event.target) || navbarToggler.contains(event.target);
+
+          if (!isClickInside) {
+              const bsCollapse = new bootstrap.Collapse(navbarNav, {
+                  toggle: false
+              });
+              bsCollapse.hide();
+          }
+      });
+
+      navbarToggler.addEventListener('click', function(event) {
+          const bsCollapse = new bootstrap.Collapse(navbarNav, {
+              toggle: false
+          });
+
+          if (navbarNav.classList.contains('show')) {
+              bsCollapse.hide();
+          } else {
+              bsCollapse.show();
+          }
+      });
+  });
+  </script>
+<!--Bootstrap JS bundle → lien pour lier au JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

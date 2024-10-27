@@ -1,0 +1,2420 @@
+/*Propriétées fond principal*/
+body {
+  --color-primary: #ffffff; /*référence des couleurs*/
+  --color-secondary: #eff0ff;
+  --color-tertiary: #b0b1d1;    
+}
+
+
+
+/*Propriétées boutons navbar*/
+.navbar-nav button { 
+  padding: 5px 0px, 0px, 5px;
+  border: none ; 
+  border-radius: 8px;
+  background-color: #eff0ff;
+  margin-bottom: 10px;
+  margin-top: 7px;
+  margin-left: -6px;
+  margin-right: 20px;
+}
+.navbar-nav button:hover { /*effet survol*/
+  color: var(--color-primary);
+  background-color: var(--color-tertiary);
+  cursor: pointer;
+}
+.navbar-nav button:focus { /*effet au clique*/
+  color: var(--color-primary);
+  background-color: var(--color-tertiary);
+  border: 2px solid var(--color-primary);
+}
+
+/*Mise en place image graph en fond de l'intro*/
+#Intro {
+  background-image: url(graphe1.PNG);
+  background-size: cover;
+  z-index: 1; /*Position de l'image postérieur*/
+}
+#Intro h1,
+#Intro h2,
+#Intro a.btn {
+  position: relative; /* Ajoutez cette propriété pour que le z-index fonctionne sur ces éléments */
+  z-index: 2; /* Définit le z-index des autres éléments à une valeur plus élevée */
+}
+
+
+/* Pourcentages */
+      .both-progress-container {
+        display: flex;
+        align-items: center; /* Aligne les éléments verticalement au centre */
+        justify-content: space-between; /* Espace uniforme entre les éléments */
+        margin-bottom: 10px;
+        padding: 4px;
+        position: relative;
+      }
+
+      /* Container for each progress */
+      .single-progress-container {
+        display: flex;
+        align-items: center;
+        margin-right: 20px; /* Espace entre les deux barres */
+      }
+
+      /* Label text (PLAQUE, SAIGNEMENT) */
+      .label-text {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #333;
+        margin-right: 10px;
+        text-align: right;
+        white-space: nowrap; /* Empêche les labels de passer à la ligne */
+      }
+
+      /* Progress bar */
+      .progress {
+        position: relative;
+        height: 8px;
+        background-color: #e0e0e0;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-right: 10px;
+        width: 150px; /* Largeur fixe pour que les barres soient de taille uniforme */
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Marqueur fixe pour la barre PLAQUE à 20% */
+      .single-progress-container.plaque .progress::before {
+        content: '';
+        position: absolute;
+        left: 20%;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      /* Marqueur fixe pour la barre SAIGNEMENT à 10% */
+      .single-progress-container.saignement .progress::before {
+        content: '';
+        position: absolute;
+        left: 10%;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      /* Couleurs pour les barres */
+      #plaque-bar {
+        background-color: rgba(255, 213, 0, 0.8);
+      }
+
+      #saignement-bar {
+        background-color: rgba(227, 0, 0, 0.8);
+      }
+
+      /* Pourcentages */
+      #plaque-percentage, #saignement-percentage {
+        font-size: 0.85em;
+        font-weight: 400;
+        color: #555;
+        background: transparent;
+        white-space: nowrap;
+      }
+
+
+
+
+
+
+
+/*Placement des dents (Charting)*/
+  .dents1 { /*Dents maxillaires vestibulaire*/
+    display: grid; /*via propriété Grid*/
+    /*Détermine l'espacement entres les dents*/
+    grid-template-columns: 54px 67px 61px 45px 47px 52px 66px 62px 66px 52px 45px 46px 47px 64px 71px 80px ; 
+    position: relative;
+    margin-top: 3%;
+  }
+  .dents1 img { /*image dent*/
+    max-width: 130px;
+  }
+  .dents1 h2 { /*numéro dent*/
+    display: none; /*enlevé car ajouter directement dans le tableau*/
+    text-align: center;
+    width: 130px; 
+    font-size: large;
+  }
+
+  .dents2 { /*Dents mandibulaires vestibulaire*/
+    display: grid;
+    grid-template-columns: 60px 88px 39px 56px 38px 56px 43px 51px 44px 56px 39px 55px 39px 90px 59px 80px ;
+    position: relative;
+    left: 3.2%; 
+    margin-bottom: 1%;
+  }
+  .dents2 img {
+    max-width: 130px;
+  }
+  .dents2 h2 {
+    display: none;
+    text-align: center;
+    width: 130px;
+    font-size: large;
+  }
+
+  .dents3 { /*Dents maxillaires palatin*/
+    display: grid;
+    grid-template-columns: 69px 60px 52px 45px 45px 52px 66px 62px 67px 52px 45px 44px 61px 52px 69px 80px ; 
+    position: relative;
+    margin-top: 3%;
+    margin-bottom: 1.5%;
+  }
+  .dents3 img {
+    max-width: 130px;
+  }
+  .dents3 h2 {
+    display: none;
+    text-align: center;
+    width: 130px;
+    font-size: large;
+  }
+
+  .dents4 { /*Dents mandibulaires linguale*/
+    display: grid; 
+    grid-template-columns: 60px 90px 39px 54px 38px 54.5px 43px 53px 43px 55px 38px 56px 38px 89.5px 59px 80px ;
+    position: relative;
+    left: 3.2%;
+    margin-bottom: -0.2%
+  }
+  .dents4 img {
+    max-width: 130px;
+  }
+  .dents4 h2 {
+    display: none;
+    text-align: center;
+    width: 130px;
+    font-size: medium;
+  }
+
+  .fond {
+    width: 1150px;
+    height: 2000px;
+    background: rgba(239, 240, 255, 0.91); 
+    border-radius: 16px ; 
+    margin-left : 20px;
+  }
+
+  @media screen and (max-width: 1200px) { /*respensive CSS dents et fond, taille grande (tablette)*/
+    .dents1 {
+      grid-template-columns: 41px 52px 47px 34px 36px 40px 51px 48px 51px 40px 35px 35px 36px 50px 54.5px 80px ; /*espacement img*/
+    }
+    .dents1 img {
+      max-width: 100px; /*taille img*/
+      }
+    .dents1 h2 {
+      text-align: center;
+      width: 100px;
+      font-size: medium;
+    }
+    .dents2 {
+      grid-template-columns: 46.5px 68px 30px 42.5px 29px 42.5px 33.5px 39px 33.5px 43px 28.5px 42px 30px 69px 45px 80px ; 
+    }
+    .dents2 img {
+      max-width: 100px;
+      }
+    .dents2 h2 {
+      text-align: center;
+      width: 100px;
+      font-size: medium;
+    }
+    .dents3 {
+      grid-template-columns: 52.5px 46.5px 40.5px 34px 34.5px 40px 51px 48px 52px 40px 35.5px 34px 47px 40px 52px 80px ; 
+    }
+    .dents3 img {
+      max-width: 100px;
+      }
+    .dents3 h2 {
+      text-align: center;
+      width: 100px;
+      font-size: medium;
+    }
+    .dents4 {
+      grid-template-columns: 45px 69px 30.5px 42px 29.5px 42px 33px 40px 33.5px 42.5px 29.5px 43px 29.5px 69px 45.5px 80px ; 
+    }
+    .dents4 img {
+      max-width: 100px;
+      }
+    .dents4 h2 {
+      text-align: center;
+      width: 100px;
+      font-size: medium;
+    }
+    .fond {
+      width: 900px; /*largeur fond*/
+      height: 1680px; /*hauteur fond*/
+    }  
+    #plaque-percentage {
+      font-size: 0.9em;
+    }
+    #saignement-percentage {
+      font-size: 0.9em;
+    }
+    #plaque-texte {
+      font-size: 0.9em;
+    }
+    #saignement-texte {
+      font-size: 0.9em;
+    }
+  }
+
+  @media screen and (max-width: 992px) { /*respensive CSS dents et fond, taille moyenne (tablette)*/
+    .dents3 {
+      left : -0.3%
+    }
+    .dents4 {
+      left : 3.4%
+    }
+    .dents1 {
+      grid-template-columns: 28.9px 36px 33px 24px 25px 28px 36px 34px 35.5px 28.5px 24px 24.9px 25px 35px 38.1px 80px ; 
+    }
+    .dents1 img {
+      max-width: 70px;
+      }
+    .dents1 h2 {
+      text-align: center;
+      width: 70px;
+      font-size: small;
+    }
+    .dents2 {
+      grid-template-columns: 33px 47px 21px 30px 20px 30px 23px 27.5px 23.5px 30px 20.5px 29px 20.5px 48.5px 32px 80px ; 
+    }
+    .dents2 img {
+      max-width: 70px;
+      }
+    .dents2 h2 {
+      text-align: center;
+      width: 70px;
+      font-size: small;
+    }
+    .dents3 {
+      grid-template-columns: 37.5px 32.5px 28.5px 24px 24.5px 28.5px 36px 33px 36.5px 28px 24px 24px 33px 28px 37px 80px ; 
+    }
+    .dents3 img {
+      max-width: 70px;
+      }
+    .dents3 h2 {
+      text-align: center;
+      width: 70px;
+      font-size: small;
+    }
+    .dents4 {
+      grid-template-columns: 32px 48px 21px 29.5px 20.5px 29.5px 23.5px 28px 23px 29.5px 20.5px 30px 21px 48px 32px 80px ; 
+    }
+    .dents4 img {
+      max-width: 70px;
+      }
+    .dents4 h2 {
+      text-align: center;
+      width: 70px;
+      font-size: small;
+    }
+    .fond {
+      width: 640px;
+      height: 1620px;
+    }  
+    #plaque-percentage {
+      font-size: 0.8em;
+    }
+    #saignement-percentage {
+      font-size: 0.8em;
+    }
+    #plaque-texte {
+      font-size: 0.8em;
+    }
+    #saignement-texte {
+      font-size: 0.8em;
+    }
+  }
+
+  @media screen and (max-width: 768px) { /*respensive CSS dents et fond, taille petite (smartphone)*/
+    .dents2 {
+      left: 1.6%
+    }
+    .dents3 {
+      left : -0.5%
+    }
+    .dents4 {
+      left: 1.6%
+    }
+    .dents1 {
+      grid-template-columns: 20.5px 25.83px 23px 17.5px 18px 20px 25.5px 24px 25px 20px 17.5px 17.5px 18px 24.5px 27px 80px ; 
+    }
+    .dents1 img {
+      max-width: 50px;
+      }
+    .dents1 h2 {
+      text-align: center;
+      width: 50px;
+      font-size: x-small;
+    }
+    .dents2 {
+      grid-template-columns: 23.5px 33.83px 15px 21px 14px 21.5px 16.5px 19.5px 16.5px 21.5px 14.5px 21.5px 14.5px 34px 23px 80px ; 
+    }
+    .dents2 img {
+      max-width: 50px;
+      }
+    .dents2 h2 {
+      text-align: center;
+      width: 50px;
+      font-size: x-small;
+    }
+    .dents3 {
+      grid-template-columns: 26.4px 23.5px 20.5px 17.5px 17.5px 20px 25.5px 24px 25.5px 20px 17.5px 17.5px 24px 19.5px 26px 80px ; 
+    }
+    .dents3 img {
+      max-width: 50px;
+      }
+    .dents3 h2 {
+      text-align: center;
+      width: 50px;
+      font-size: x-small;
+    }
+    .dents4 {
+      grid-template-columns: 23px 34.5px 15.5px 20.5px 14.5px 21.5px 16.5px 20px 17px 20.5px 14.5px 21.5px 14.5px 34px 23px 80px ; 
+    }
+    .dents4 img {
+      max-width: 50px;
+      }
+    .dents4 h2 {
+      text-align: center;
+      width: 50px;
+      font-size: x-small;
+    }
+    .fond {
+      width: 460px;
+      height: 1550px;
+    } 
+    #plaque-percentage {
+      font-size: 0.7em;
+    }
+    #saignement-percentage {
+      font-size: 0.7em;
+    }
+    #plaque-texte {
+      font-size: 0.7em;
+    }
+    #saignement-texte {
+      font-size: 0.7em;
+    }
+  }
+
+
+/*Propriétées tableaux*/
+    table { /*toutes les table*/
+      border-collapse: collapse; /*bords*/
+      width: 100%; /*taille largeur*/
+    }
+
+    #table-container { /*Tableau dents maxillaires vestibulaire*/
+      margin-left: 0.5%; /*déplacement */
+    }
+
+    #second-table-container { /*Tableau dents mandibulaires vestibulaire*/
+      margin-top: 0.75%;
+      margin-left: 0.8%;
+      margin-bottom: 1.5%;
+    }
+
+    #third-table-container { /*Tableau dents maxillaires palatin*/
+      margin-top: 1%; /* marge entre les tableaux centraux */
+      margin-left: 1.6%;
+    }
+
+    #quatre-table-container { /*Tableau dents mandibulaires linguale*/
+      margin-top: 0.7%;
+      margin-left: 2.8%;
+    }
+
+    #table-container,
+    #third-table-container,
+    #second-table-container,
+    #quatre-table-container {
+      width: 100%; /*taille pour tous les tableaux*/
+    }
+  
+
+  /*Changer le fond de toutes les cellules sauf dernière colonne et ligne avec numéro des dents et champs de saisie*/
+  #table-container tr:first-child th:not(:last-child),
+  #table-container tr:nth-child(2) td:not(:last-child),
+  #table-container tr:nth-child(3) td:not(:last-child),
+  #table-container tr:nth-child(4) td:not(:last-child),
+  #table-container tr:nth-child(5) td:not(:last-child),
+  #second-table-container tr:nth-child(4) td:not(:last-child),
+  #second-table-container tr:nth-child(5) td:not(:last-child),
+  #second-table-container tr:nth-child(6) td:not(:last-child),
+  #second-table-container tr:nth-child(7) td:not(:last-child),
+  #second-table-container tr:nth-child(8) td:not(:last-child),
+  #third-table-container tr:first-child th:not(:last-child),
+  #third-table-container tr:nth-child(2) td:not(:last-child),
+  #third-table-container tr:nth-child(3) td:not(:last-child),
+  #third-table-container tr:nth-child(4) td:not(:last-child),
+  #third-table-container tr:nth-child(5) td:not(:last-child),
+  #quatre-table-container tr:nth-child(4) td:not(:last-child),
+  #quatre-table-container tr:nth-child(5) td:not(:last-child),
+  #quatre-table-container tr:nth-child(6) td:not(:last-child),
+  #quatre-table-container tr:nth-child(7) td:not(:last-child),
+  #quatre-table-container tr:nth-child(8) td:not(:last-child){
+    background-color: rgba(226, 226, 226, 0.477);
+  }
+
+  /*Changer le fond de toutes les cellules avec numéro des dents*/
+  #table-container tr:nth-child(8),
+  #second-table-container tr:first-child,
+  #third-table-container tr:nth-child(8),
+  #quatre-table-container tr:first-child {
+    background-color: #d1d2ec;
+  }
+
+  /*Changer le fond de toutes les cellules champs de saisie*/
+  #table-container tr:nth-child(6) td:not(:last-child),
+  #table-container tr:nth-child(7) td:not(:last-child),
+  #second-table-container tr:nth-child(2) td:not(:last-child),
+  #second-table-container tr:nth-child(3) td:not(:last-child),
+  #third-table-container tr:nth-child(6) td:not(:last-child),
+  #third-table-container tr:nth-child(7) td:not(:last-child),
+  #quatre-table-container tr:nth-child(2) td:not(:last-child),
+  #quatre-table-container tr:nth-child(3) td:not(:last-child) {
+    background-color: white;
+  }  
+
+  /*Rétablir les mêmes propriétées pour la dernière cellule des lignes avec les numéros 
+  car en enlevant la data "Dents" du JS, les 8 sont concidèraient comme faisant partie de la dernière colonne */
+  #table-container tr:last-child td:last-child,
+  #third-table-container tr:last-child td:last-child,
+  #second-table-container tr:first-child th:last-child,
+  #quatre-table-container tr:first-child th:last-child {
+    font-weight: 400;
+    border : 1px solid #b0b1d1;
+    border-right: none;
+  }
+
+/* Partie pour barrer les cellules si dent manquante */
+          /* Applique l'effet de texte barré aux cellules de la dernière ligne du premier et troisième tableau */
+          #table-container tr:last-child td:hover,
+          #third-table-container tr:last-child td:hover {
+              text-decoration: line-through;
+              cursor: pointer;
+          }
+          /* Applique l'effet de texte barré aux cellules de la première ligne du deuxième et quatrième tableau */
+          #second-table-container tr:first-child th:hover,
+          #second-table-container tr:first-child td:hover,
+          #quatre-table-container tr:first-child th:hover,
+          #quatre-table-container tr:first-child td:hover {
+              text-decoration: line-through;
+              cursor: pointer;
+          }
+          /* Applique l'effet de texte barré aux cellules de la colonne sélectionnée */
+          .diagonal-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Largeur couvrant toute la cellule */
+            height: 100%; /* Hauteur couvrant toute la cellule */
+            background: linear-gradient(-45deg, transparent calc(50% - 1px), black, transparent calc(50% + 1px)); /* Crée une ligne diagonale */
+            transform-origin: top left;
+          }
+
+      /* Rend invisible la derniere cellule de la ligne avce numéro dent*/
+          #second-table-container tr:first-child th:last-child,
+          #second-table-container tr:first-child td:last-child,
+          #quatre-table-container tr:first-child th:last-child,
+          #quatre-table-container tr:first-child td:last-child
+          #table-container tr:last-child th:last-child,
+          #table-container tr:last-child td:last-child,
+          #third-table-container tr:last-child th:last-child,
+          #third-table-container tr:last-child td:last-child {
+            visibility: hidden; /* Rend le contenu de la cellule invisible */
+            border-top: none; /* Supprime la bordure supérieure */
+            border-bottom: none; /* Supprime la bordure inférieure */
+            border-right: none; /* Supprime la bordure droite */
+            border-left: none; /* Supprime la bordure droite */
+          }
+
+
+    #table-container th, #table-container td { /*pour toutes les cellules du premier tableau*/
+      border: 1px solid #b0b1d1; /*bords des cellules*/
+      font-weight: normal; /*style du texte*/
+      text-align: center; /*alignement du texte*/
+      font-size: small; /*taille du texte*/
+    }
+    #table-container th:last-child, #table-container td:last-child { /*pour les cellules de la dernière colonne du premier tableau*/
+      border-top: none; /* Supprime la bordure de droite pour la dernière colonne */
+      border-bottom : none; /*...*/
+      border-right: none;
+      border-left: none;
+      text-align: center; /*alignement du texte*/
+      font-family: inter 300; /*police du texte*/
+      font-weight: 200; /*style police*/
+    }
+    #second-table-container th, #second-table-container td { /*pour toutes les cellules du second tableau*/
+      border: 1px solid #b0b1d1;
+      text-align: left;
+      font-weight: normal;
+      text-align: center;
+      font-size: small;
+    }
+    #second-table-container th:last-child, #second-table-container td:last-child { /*pour les cellules de la dernière colonne du second tableau*/
+      border-top: none; 
+      border-bottom : none;
+      border-right: none;
+      border-left: none;
+      font-size: small;
+      text-align: center;
+      font-family: inter 300;
+      font-weight: 200;
+    }
+    #third-table-container th, #third-table-container td { /*pour toutes les cellules du troisième tableau*/
+      border: 1px solid #b0b1d1;
+      text-align: left;
+      font-weight: normal;
+      text-align: center;
+      font-size: small;
+    }
+    #third-table-container th:last-child, #third-table-container td:last-child { /*pour les cellules de la dernière colonne du troisième tableau*/
+      border-top: none; 
+      border-bottom : none;
+      border-right: none;
+      border-left: none;
+      font-size: small;
+      text-align: center;
+      font-family: inter 300;
+      font-weight: 200;
+    }
+    #quatre-table-container th, #quatre-table-container td { /*pour toutes les cellules du quatrième tableau*/
+      border: 1px solid #b0b1d1;
+      text-align: left;
+      font-weight: normal;
+      text-align: center;
+      font-size: small;
+    }
+    #quatre-table-container th:last-child, #quatre-table-container td:last-child { /*pour les cellules de la dernière colonne du quatrième tableau*/
+      border-top: none;
+      border-bottom : none;
+      border-right: none;
+      border-left: none;
+      font-size: small;
+      text-align: center;
+      font-family: inter 300;
+      font-weight: 200;
+    }
+
+
+  /* Définir la largeur de chaque colonne du premier tableau*/
+    #table-container th:nth-child(1),
+    #table-container td:nth-child(1){
+      width: 6%; /* Largeur de la première colonne */
+      border-left: none;
+    }
+    #table-container th:nth-child(2),
+    #table-container td:nth-child(2) {
+      width: 6%; /*...*/
+    }
+    #table-container th:nth-child(3),
+    #table-container td:nth-child(3) {
+      width: 6%;
+    }
+    #table-container th:nth-child(4),
+    #table-container td:nth-child(4) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(5),
+    #table-container td:nth-child(5) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(6),
+    #table-container td:nth-child(6) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(7),
+    #table-container td:nth-child(7) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(8),
+    #table-container td:nth-child(8) {
+      width: 5%;
+    }
+    #table-container th:nth-child(9),
+    #table-container td:nth-child(9) {
+      width: 5%; 
+    }
+    #table-container th:nth-child(10),
+    #table-container td:nth-child(10) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(11),
+    #table-container td:nth-child(11) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(12),
+    #table-container td:nth-child(12) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(13),
+    #table-container td:nth-child(13) {
+      width: 4.5%;
+    }
+    #table-container th:nth-child(14),
+    #table-container td:nth-child(14) {
+      width: 6%;
+    }
+    #table-container th:nth-child(15),
+    #table-container td:nth-child(15) {
+      width: 6%;
+    }
+    #table-container th:nth-child(16),
+    #table-container td:nth-child(16) {
+      width: 6%;
+      border-right: none;
+    }
+    #table-container th:nth-child(17),
+    #table-container td:nth-child(17) {
+      width: 13%;
+    }
+  
+  /* Définir la largeur de chaque colonne du second tableau */
+    #second-table-container th:nth-child(1),
+    #second-table-container td:nth-child(1) {
+      width: 7.5%; /* Largeur de la première colonne */
+      border-left: none;
+    }
+    #second-table-container th:nth-child(2),
+    #second-table-container td:nth-child(2) {
+      width: 7%; /*...*/
+    }
+    #second-table-container th:nth-child(3),
+    #second-table-container td:nth-child(3) {
+      width: 7%;
+    }
+    #second-table-container th:nth-child(4),
+    #second-table-container td:nth-child(4) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(5),
+    #second-table-container td:nth-child(5) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(6),
+    #second-table-container td:nth-child(6) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(7),
+    #second-table-container td:nth-child(7) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(8),
+    #second-table-container td:nth-child(8) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(9),
+    #second-table-container td:nth-child(9) {
+      width: 4.5%; 
+    }
+    #second-table-container th:nth-child(10),
+    #second-table-container td:nth-child(10) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(11),
+    #second-table-container td:nth-child(11) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(12),
+    #second-table-container td:nth-child(12) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(13),
+    #second-table-container td:nth-child(13) {
+      width: 4.5%;
+    }
+    #second-table-container th:nth-child(14),
+    #second-table-container td:nth-child(14) {
+      width: 7%;
+    }
+    #second-table-container th:nth-child(15),
+    #second-table-container td:nth-child(15) {
+      width: 7%;
+    }
+    #second-table-container th:nth-child(16),
+    #second-table-container td:nth-child(16) {
+      width: 7.5%;
+      border-right: none;
+    }
+    #second-table-container th:nth-child(17),
+    #second-table-container td:nth-child(17) {
+      width: 15%;
+    }
+
+  /* Définir la largeur de chaque colonne du troisième tableau */
+    #third-table-container th:nth-child(1),
+    #third-table-container td:nth-child(1) {
+      width: 6.5%; /* Largeur de la première colonne */
+      border-left: none;
+    }
+    #third-table-container th:nth-child(2),
+    #third-table-container td:nth-child(2) {
+      width: 6.5%; /*...*/
+    }
+    #third-table-container th:nth-child(3),
+    #third-table-container td:nth-child(3) {
+      width: 6%;
+    }
+    #third-table-container th:nth-child(4),
+    #third-table-container td:nth-child(4) {
+      width: 4.5%;
+    }
+    #third-table-container th:nth-child(5),
+    #third-table-container td:nth-child(5) {
+      width: 4.5%;
+    } 
+    #third-table-container th:nth-child(6),
+    #third-table-container td:nth-child(6) {
+      width: 4.5%;
+    }
+    #third-table-container th:nth-child(7),
+    #third-table-container td:nth-child(7) {
+      width: 4.5%;
+    } 
+    #third-table-container th:nth-child(8),
+    #third-table-container td:nth-child(8) {
+      width: 5%;
+    }
+    #third-table-container th:nth-child(9),
+    #third-table-container td:nth-child(9) {
+      width: 5%; 
+    }
+    #third-table-container th:nth-child(10),
+    #third-table-container td:nth-child(10) {
+      width: 4.5%;
+    } 
+    #third-table-container th:nth-child(11),
+    #third-table-container td:nth-child(11) {
+      width: 4.5%;
+    }
+    #third-table-container th:nth-child(12),
+    #third-table-container td:nth-child(12) {
+      width: 4.5%;
+    }
+    #third-table-container th:nth-child(13),
+    #third-table-container td:nth-child(13) {
+      width: 4.5%;
+    }
+    #third-table-container th:nth-child(14),
+    #third-table-container td:nth-child(14) {
+      width: 6%;
+    }
+    #third-table-container th:nth-child(15),
+    #third-table-container td:nth-child(15) {
+      width: 6.5%;
+    }
+    #third-table-container th:nth-child(16),
+    #third-table-container td:nth-child(16) {
+      width: 6.5%;
+      border-right: none;
+    }
+    #third-table-container th:nth-child(17),
+    #third-table-container td:nth-child(17) {
+      width: 13.5%;
+    }
+
+  /* Définir la largeur de chaque colonne */
+    #quatre-table-container th:nth-child(1),
+    #quatre-table-container td:nth-child(1) {
+      width: 7.5%; /*...*/
+      border-left: none;
+    }
+    #quatre-table-container th:nth-child(2),
+    #quatre-table-container td:nth-child(2) {
+      width: 7%; /*...*/
+    }
+    #quatre-table-container th:nth-child(3),
+    #quatre-table-container td:nth-child(3) {
+      width: 7%;
+    }
+    #quatre-table-container th:nth-child(4),
+    #quatre-table-container td:nth-child(4) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(5),
+    #quatre-table-container td:nth-child(5) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(6),
+    #quatre-table-container td:nth-child(6) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(7),
+    #quatre-table-container td:nth-child(7) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(8),
+    #quatre-table-container td:nth-child(8) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(9),
+    #quatre-table-container td:nth-child(9) {
+      width: 4.5%; 
+    }
+    #quatre-table-container th:nth-child(10),
+    #quatre-table-container td:nth-child(10) {
+      width: 4.5%;
+    } 
+    #quatre-table-container th:nth-child(11),
+    #quatre-table-container td:nth-child(11) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(12),
+    #quatre-table-container td:nth-child(12) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(13),
+    #quatre-table-container td:nth-child(13) {
+      width: 4.5%;
+    }
+    #quatre-table-container th:nth-child(14),
+    #quatre-table-container td:nth-child(14) {
+      width: 7%;
+    }
+    #quatre-table-container th:nth-child(15),
+    #quatre-table-container td:nth-child(15) {
+      width: 7%;
+    }
+    #quatre-table-container th:nth-child(16),
+    #quatre-table-container td:nth-child(16) {
+      width: 7.5%;
+      border-right: none;
+    }
+    #quatre-table-container th:nth-child(17),
+    #quatre-table-container td:nth-child(17) {
+      width: 15%;
+    }
+
+  @media screen and (max-width: 1200px) { /*respensive CSS tableaux, taille grande (tablette)*/
+    #table-container th, #table-container td { /*pour toutes les cellules du premier tableau*/ 
+      font-size: 9.5px;
+    }
+    #table-container th:last-child, #table-container td:last-child { /*pour les cellules de la dernière colonne du premier tableau*/
+      font-size: 9.5px;
+    }
+    #second-table-container th, #second-table-container td { /*... du second tableau*/
+      font-size: 9.5px;
+    }
+    #second-table-container th:last-child, #second-table-container td:last-child { 
+      font-size: 9.5px;
+    }
+    #third-table-container th, #third-table-container td {
+      font-size: 9.5px;
+    }
+    #third-table-container th:last-child, #third-table-container td:last-child {
+      font-size: 9.5px;
+    }
+    #quatre-table-container th, #quatre-table-container td {
+      font-size: 9.5px;
+    }
+    #quatre-table-container th:last-child, #quatre-table-container td:last-child {
+      font-size: 9.5px;
+    }
+
+    #table-container { 
+      margin-left: 0.2%; /*déplacement vers la droite du premier tableau*/
+    }
+    #second-table-container { 
+      margin-left: 0.1%; /*... du premier tableau*/
+    }
+    #third-table-container {
+      margin-top: 1%; /* marge entre les tableaux centraux */
+      margin-left: 0.9%;
+    }
+    #quatre-table-container {
+      margin-left: 2.6%;
+    }
+
+  /* Définir la largeur de chaque colonne du premier tableau*/
+      #table-container th:nth-child(1),
+      #table-container td:nth-child(1){
+        width: 6%; /* Largeur de la première colonne */
+        border-left: none;
+      }
+      #table-container th:nth-child(2),
+      #table-container td:nth-child(2) {
+        width: 6%; /*...*/
+      }
+      #table-container th:nth-child(3),
+      #table-container td:nth-child(3) {
+        width: 6%;
+      }
+      #table-container th:nth-child(4),
+      #table-container td:nth-child(4) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(5),
+      #table-container td:nth-child(5) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(6),
+      #table-container td:nth-child(6) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(7),
+      #table-container td:nth-child(7) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(8),
+      #table-container td:nth-child(8) {
+        width: 5%;
+      }
+      #table-container th:nth-child(9),
+      #table-container td:nth-child(9) {
+        width: 5%; 
+      }
+      #table-container th:nth-child(10),
+      #table-container td:nth-child(10) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(11),
+      #table-container td:nth-child(11) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(12),
+      #table-container td:nth-child(12) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(13),
+      #table-container td:nth-child(13) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(14),
+      #table-container td:nth-child(14) {
+        width: 6%;
+      }
+      #table-container th:nth-child(15),
+      #table-container td:nth-child(15) {
+        width: 6%;
+      }
+      #table-container th:nth-child(16),
+      #table-container td:nth-child(16) {
+        width: 6%;
+        border-right: none;
+      }
+      #table-container th:nth-child(17),
+      #table-container td:nth-child(17) {
+        width: 14.5%;
+      }
+  }
+
+  @media screen and (max-width: 992px) { /*respensive CSS tableaux, taille moyenne (tablette)*/
+    #table-container th, #table-container td {
+      font-size: 7px;
+    }
+    #table-container th:last-child, #table-container td:last-child {
+      font-size: 7px;
+    }
+    #second-table-container th, #second-table-container td {
+      font-size: 7px;
+    }
+    #second-table-container th:last-child, #second-table-container td:last-child {
+      font-size: 7px;
+    }
+    #third-table-container th, #third-table-container td {
+      font-size: 7px;
+    }
+    #third-table-container th:last-child, #third-table-container td:last-child {
+      font-size: 7px;
+    }
+    #quatre-table-container th, #quatre-table-container td {
+      font-size: 7px;
+    }
+    #quatre-table-container th:last-child, #quatre-table-container td:last-child {
+      font-size: 7px;
+    }
+
+    #table-container {
+      margin-left: 0.3%;
+    }
+    #second-table-container {
+      margin-left: 0.4%;
+    }
+    #third-table-container {
+      margin-top: 1%; /* marge entre les tableaux centraux */
+      margin-left: 1.3%;
+    }
+    #quatre-table-container {
+      margin-left: 4.2%;
+    }
+
+  /* Définir la largeur de chaque colonne du premier tableau */
+      #table-container th:nth-child(1),
+      #table-container td:nth-child(1){
+        width: 6%; /* Largeur de la première colonne */
+        border-left: none;
+      }
+  /* Définir la largeur de chaque colonne du second tableau */
+      #table-container th:nth-child(2),
+      #table-container td:nth-child(2) {
+        width: 6%; /* Largeur de la deuxième colonne */
+      }
+      #table-container th:nth-child(3),
+      #table-container td:nth-child(3) {
+        width: 6%; /*...*/
+      }
+      #table-container th:nth-child(4),
+      #table-container td:nth-child(4) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(5),
+      #table-container td:nth-child(5) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(6),
+      #table-container td:nth-child(6) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(7),
+      #table-container td:nth-child(7) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(8),
+      #table-container td:nth-child(8) {
+        width: 5%;
+      }
+      #table-container th:nth-child(9),
+      #table-container td:nth-child(9) {
+        width: 5%; 
+      }
+      #table-container th:nth-child(10),
+      #table-container td:nth-child(10) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(11),
+      #table-container td:nth-child(11) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(12),
+      #table-container td:nth-child(12) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(13),
+      #table-container td:nth-child(13) {
+        width: 4.5%;
+      }
+      #table-container th:nth-child(14),
+      #table-container td:nth-child(14) {
+        width: 6%;
+      }
+      #table-container th:nth-child(15),
+      #table-container td:nth-child(15) {
+        width: 6%;
+      }
+      #table-container th:nth-child(16),
+      #table-container td:nth-child(16) {
+        width: 6%;
+        border-right: none;
+      }
+      #table-container th:nth-child(17),
+      #table-container td:nth-child(17) {
+        width: 15%;
+      }
+  }
+
+  @media screen and (max-width: 768px) { /*respensive CSS tableaux, taille petite (smartphone)*/
+    #table-container th, #table-container td {
+      font-size: 5px;
+    }
+    #table-container th:last-child, #table-container td:last-child {
+      font-size: 5px;
+    }
+    #second-table-container th, #second-table-container td {
+      font-size: 5px;
+    }
+    #second-table-container th:last-child, #second-table-container td:last-child {
+      font-size: 5px;
+    }
+    #third-table-container th, #third-table-container td {
+      font-size: 5px;
+    }
+    #third-table-container th:last-child, #third-table-container td:last-child {
+      font-size: 5px;
+    }
+    #quatre-table-container th, #quatre-table-container td {
+      font-size: 5px;
+    }
+    #quatre-table-container th:last-child, #quatre-table-container td:last-child {
+      font-size: 5px;
+    }
+
+    #table-container {
+      margin-left: 0.55%;
+    }
+    #second-table-container {
+      margin-left: 1.5%;
+    }
+    #third-table-container {
+      margin-top: 1%; /* marge entre les tableaux centraux */
+      margin-left: 2.3%;
+    }
+    #quatre-table-container {
+      margin-left: 7.3%;
+    }
+  }
+
+ 
+
+/* Propriétées contenus tableaux */
+  /* Niveau Gingival et Profondeur Sondage => Nombre */
+  .small-input {
+    display: inline-block;
+    text-align: center; 
+    margin :0px;
+    padding : 0px;
+    border: none;
+  }
+  .full-width-cell input[type="text"] {
+    width: 33%; /*33% pour que les champs de saisies soient alignées horizontalement dans la totalité de la cellule*/
+  }
+
+   /* Boutons cases à cocher (checkboxs) */
+   /* pour Implant */
+  .custom-checkbox1 {   
+    margin: 0; 
+    padding: 0; 
+    appearance: none; /* Masque les styles par défaut des checkboxs (sinon on ne peux pas les modifier) */
+    -webkit-appearance: none; /* Masque les styles par défaut sur WebKit (Chrome, Safari) */
+    -moz-appearance: none; /* Masque les styles par défaut sur Firefox */
+    border: none; 
+    border-radius: 2px; 
+    width: 13px; /* taille pour les checkboxs */
+    height: 13px; /* hauteur pour les checkboxs */
+    background-color: #fff; 
+    position: relative;
+  }
+  .custom-checkbox1:checked {
+    background-color: rgb(140, 140, 140); /* Change la couleur de fond lorsque cochée */
+  }
+  .custom-checkbox1:hover {
+    background-color: rgba(140, 140, 140, 0.29); /* Change la couleur de fond lors du survol */
+  }
+  .custom-checkbox1:checked:hover { /* Garde la couleur au survol lorsque la case est cochée */
+    background-color: rgb(140, 140, 140); 
+  }
+  .custom-checkbox1::before { /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+    content: '';
+    position: absolute;
+    top: -2px; 
+    right: -20px;
+    bottom: -2px;
+    left: -20px;
+  }
+
+  /* pour Plaque */
+  .custom-checkbox2 {   
+    margin: 0 1.5px 0 0; /* Ajoute une marge à droite de 5px */
+    padding: 0; 
+    appearance: none; /* Masque les styles par défaut des checkboxs (sinon on ne peux pas les modifier) */
+    -webkit-appearance: none; /* Masque les styles par défaut des checkboxs sur WebKit (Chrome, Safari) */
+    -moz-appearance: none; /* Masque les styles par défaut des checkboxs sur Firefox */
+    border: none; 
+    border-radius: 2px; /* Ajoute un coin arrondi */
+    width: 13px; /* taille pour les checkboxs */
+    height: 13px; /* hauteur pour les checkboxs */
+    background-color: #fff; /* Définit la couleur de fond */
+    position: relative;
+  }
+  .custom-checkbox2:checked {
+    background-color: rgb(255, 213, 0); /* Change la couleur de fond lorsque cochée */
+  }
+  .custom-checkbox2:hover {
+    background-color: rgba(255, 213, 0, 0.347); /* Change la couleur de fond lors du survol */
+  }
+  .custom-checkbox2:checked:hover { /* Garde la couleur au survol lorsque la case est cochée */
+    background-color: rgb(255, 213, 0); 
+  }
+  .custom-checkbox2::before { /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+    content: '';
+    position: absolute;
+    top: -4px; 
+    right: 0px;
+    bottom: -4px;
+    left: 0px;
+  }
+
+  /* pour Saignement */
+  .custom-checkbox3 {   
+    margin: 0 1.5px 0 0; /* Ajoute une marge à droite de 5px */
+    padding: 0; 
+    appearance: none; /* Masque les styles par défaut des checkboxs (sinon on ne peux pas les modifier)*/
+    -webkit-appearance: none; /* Masque les styles par défaut sur WebKit des checkboxs (Chrome, Safari) */
+    -moz-appearance: none; /* Masque les styles par défaut sur Firefox des checkboxs */
+    border: none;
+    border-radius: 2px; 
+    width: 13px; /* taille pour les checkboxs */
+    height: 13px; /* hauteur pour les checkboxs */
+    background-color: #fff; 
+    position: relative;
+  }
+  .custom-checkbox3:checked {  /* Change la couleur de fond lorsque cochée */
+    background-color: rgb(227, 0, 0);
+  }
+  .custom-checkbox3:hover { /* Change la couleur de fond lors du survol */
+    background-color: rgba(227, 0, 0, 0.29); 
+  }
+  .custom-checkbox3:checked:hover { /* Garde la couleur au survol lorsque la case est cochée */
+    background-color: rgb(227, 0, 0); 
+    border-color: transparent; 
+  }
+  .custom-checkbox3::before { /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+    content: '';
+    position: absolute;
+    top: -4px; 
+    right: 0px;
+    bottom: -4px;
+    left: 0px;
+  }
+
+
+  /* Styles pour les menus déroulants */
+  .custom-dropdown {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    background : none;
+    border: none;
+    cursor: pointer;
+    text-align: end;
+  }
+  
+  .custom-dropdown option:checked { /* lorsque l'on clique*/
+    background-color: rgb(169, 168, 168);
+    color: white;
+  }
+
+
+  @media screen and (max-width: 1200px) { /*respensive CSS contenus tableaux, taille grande (tablette)*/
+    .custom-dropdown { /*menus de défilement (mobilité et furcation)*/
+      width: 200%; /*taille augmenté sinon chiffre non visible*/
+      text-align: left; /*et décallé vers la gauche pour la même raison*/
+    }
+          /* Styles pour la flèche du menu déroulant - Microsoft Edge et autres navigateurs basés sur Chromium pour la meme raison */
+          select::-ms-expand {
+            display: none; /* Masque la flèche par défaut dans Microsoft Edge */
+          }
+          /* Styles pour la flèche du menu déroulant - Autres navigateurs basés sur Chromium (Chrome, Opera, etc.) */
+          select {
+            appearance: none;
+            -webkit-appearance: none; /* Masque la flèche dans les navigateurs basés sur Chromium */
+          }
+    .custom-checkbox1::before { /* pour Implant */
+      content: '';
+      position: absolute;
+      top: -2px; /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+      right: -15px; /*...*/
+      bottom: -2px;
+      left: -15px;
+    }
+    .custom-checkbox2::before { /* pour Plaque */
+      content: '';
+      position: absolute;
+      top: -2px; 
+      right: -15px;
+      bottom: -2px;
+      left: -15px;
+    }
+    .custom-checkbox3::before { /* pour Saignement */
+      content: '';
+      position: absolute;
+      top: -2px; 
+      right: -15px;
+      bottom: -2px;
+      left: -15px;
+    }
+  }
+
+  @media screen and (max-width: 992px) { /*respensive CSS contenus tableaux, taille moyenne (tablette)*/
+    .custom-dropdown { /*menus de défilement (mobilité et furcation)*/
+      width: 200%; /*taille augmenté sinon chiffre non visible*/
+      text-align: left; /*et décallé vers la gauche pour la même raison*/
+    }
+          /* Styles pour la flèche du menu déroulant - Microsoft Edge et autres navigateurs basés sur Chromium pour la meme raison */
+          select::-ms-expand {
+            display: none; /* Masque la flèche par défaut dans Microsoft Edge */
+          }
+          /* Styles pour la flèche du menu déroulant - Autres navigateurs basés sur Chromium (Chrome, Opera, etc.) */
+          select {
+            appearance: none;
+            -webkit-appearance: none; /* Masque la flèche dans les navigateurs basés sur Chromium */
+          }
+    .custom-checkbox1::before { /* pour Implant */
+      content: '';
+      position: absolute;
+      top: -2px; /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+      right: -10px; /*...*/
+      bottom: -2px;
+      left: -10px;
+    }
+    .custom-checkbox2::before { /* pour Plaque */
+      content: '';
+      position: absolute;
+      top: -2px; 
+      right: -10px;
+      bottom: -2px;
+      left: -10px;
+    }
+    .custom-checkbox3::before { /* pour Saignement */
+      content: '';
+      position: absolute;
+      top: -2px; 
+      right: -10px;
+      bottom: -2px;
+      left: -10px;
+    }
+  }
+
+  @media screen and (max-width: 768px) { /*respensive CSS contenus tableaux, taille petite (smartphone)*/
+    .full-width-cell input[type="text"] {  /*pour Niveau Gingival et Profondeur Sondage*/
+      width: 100%; /*100% pour que les champs de saisies soient alignées verticalement un a un dans la totalité de la cellule*/
+    }
+    .custom-dropdown { /*menus de défilement (mobilité et furcation)*/
+      width: 200%; /*taille augmenté sinon chiffre non visible*/
+      text-align: left; /*et décallé vers la gauche pour la même raison*/
+    }
+          /* Styles pour la flèche du menu déroulant - Microsoft Edge et autres navigateurs basés sur Chromium pour la meme raison */
+          select::-ms-expand {
+            display: none; /* Masque la flèche par défaut dans Microsoft Edge */
+          }
+          /* Styles pour la flèche du menu déroulant - Autres navigateurs basés sur Chromium (Chrome, Opera, etc.) */
+          select {
+            appearance: none;
+            -webkit-appearance: none; /* Masque la flèche dans les navigateurs basés sur Chromium */
+          }
+
+    .custom-checkbox1::before { /* pour Implant */
+      content: '';
+      position: absolute;
+      top: -2px; /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+      right: -5px; /*...*/
+      bottom: -2px;
+      left: -5px;
+    }
+    .custom-checkbox2::before { /* pour Plaque */
+      content: '';
+      position: absolute;
+      top: -2px; 
+      right: -5px;
+      bottom: -2px;
+      left: -5px;
+    }
+    .custom-checkbox3::before { /* pour Saignement */
+      content: '';
+      position: absolute;
+      top: -2px; 
+      right: -5px;
+      bottom: -2px;
+      left: -5px;
+    }
+  }
+
+  
+
+
+/* Modifier la couleur des icônes de flèche en violet dans les onglet utilisations */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(100%);
+}
+  
+
+
+
+
+#graph1 {
+  top: 195px; /* Ajustez selon votre mise en page */
+  left: 35px;
+  width: 905px;
+  height: 225px;
+  margin-top: -19%;
+}
+
+#graph2 {
+  top: -183px; /* Ajustez selon votre mise en page */
+  left: 53.5px;
+  width: 871px;
+  height: 225px;
+  margin-bottom: -19%;
+}
+
+#graph3 {
+  top: 195px; /* Ajustez selon votre mise en page */
+  left: 34px;
+  width: 902px;
+  height: 225px;
+  margin-top: -19%;
+}
+
+#graph4 {
+  top: -185px; /* Ajustez selon votre mise en page */
+  left: 53px;
+  width: 866px;
+  height: 225px;
+  margin-bottom: -20%;
+}
+
+#graph1, #graph2, #graph3, #graph4 {
+  position: absolute;
+  z-index: 2;
+}
+
+.dents1, .dents2, .dents3, .dents4 {
+  position: relative;
+  z-index: 1; /* Plus élevé pour être au-dessus des graphiques */
+}
+
+/* Sélecteur plus spécifique pour les lignes de grille */
+#graph1 .c3-grid line, 
+#graph2 .c3-grid line, 
+#graph3 .c3-grid line, 
+#graph4 .c3-grid line {
+    stroke: rgba(128, 128, 128, 0.2); /* Gris avec 50% de transparence */
+    stroke-width: 1px; /* Épaisseur de la ligne */
+}
+
+#graph1 .c3-line-Profondeur-Sondage-line, 
+#graph2 .c3-line-Profondeur-Sondage-line,
+#graph3 .c3-line-Profondeur-Sondage-line,
+#graph4 .c3-line-Profondeur-Sondage-line {
+  stroke-width: 2px; /* Épaisseur pour la ligne de Profondeur Sondage */
+}
+#graph1 .c3-line-Niveau-Gingival,
+#graph2 .c3-line-Niveau-Gingival,
+#graph3 .c3-line-Niveau-Gingival,
+#graph4 .c3-line-Niveau-Gingival {
+  stroke-width: 2px; /* Épaisseur pour la ligne de Niveau Gingival */
+}
+
+
+@media screen and (max-width: 1200px) { /*respensive CSS contenus tableaux, taille grande (tablette)*/
+  #graph1 {
+    top: 153px; /* Ajustez selon votre mise en page */
+    left: 26px;
+    width: 697px;
+    height: 180px;
+    margin-top: -19%;
+  }
+  
+  #graph2 {
+    top: -144px; /* Ajustez selon votre mise en page */
+    left: 40.5px;
+    width: 669px;
+    height: 180px;
+    margin-bottom: -19%;
+  }
+  
+  #graph3 {
+    top: 153px; /* Ajustez selon votre mise en page */
+    left: 25px;
+    width: 697px;
+    height: 180px;
+    margin-top: -19%;
+  }
+  
+  #graph4 {
+    top: -144px; /* Ajustez selon votre mise en page */
+    left: 38px;
+    width: 670px;
+    height: 180px;
+    margin-bottom: -19%;
+  }
+}
+
+@media screen and (max-width: 992px) { /*respensive CSS contenus tableaux, taille moyenne (tablette)*/
+  #graph1 {
+    top: 109px; /* Ajustez selon votre mise en page */
+    left: 16px;
+    width: 492px;
+    height: 130px;
+    margin-top: -19%;
+  }
+  
+  #graph2 {
+    top: -103px; /* Ajustez selon votre mise en page */
+    left: 28.4px;
+    width: 468px;
+    height: 130px;
+    margin-bottom: -19%;
+  }
+  
+  #graph3 {
+    top: 109px; /* Ajustez selon votre mise en page */
+    left: 16px;
+    width: 492px;
+    height: 130px;
+    margin-top: -19%;
+  }
+  
+  #graph4 {
+    top: -104px; /* Ajustez selon votre mise en page */
+    left: 27.5px;
+    width: 468px;
+    height: 130px;
+    margin-bottom: -19%;
+  }
+}
+
+@media screen and (max-width: 768px) { /*respensive CSS contenus tableaux, taille petite (smartphone)*/
+  #graph1 {
+    top: 86.5px; /* Ajustez selon votre mise en page */
+    left: 12px;
+    width: 348px;
+    height: 95px;
+    margin-top: -19%;
+  }
+  
+  #graph2 {
+    top: -77.5px; /* Ajustez selon votre mise en page */
+    left: 19.6px;
+    width: 334.5px;
+    height: 95px;
+    margin-bottom: -19%;
+  }
+  
+  #graph3 {
+    top: 84.5px; /* Ajustez selon votre mise en page */
+    left: 10.1px;
+    width: 351px;
+    height: 95px;
+    margin-top: -19%;
+  }
+  
+  #graph4 {
+    top: -75.5px; /* Ajustez selon votre mise en page */
+    left: 18.5px;
+    width: 334.5px;
+    height: 95px;
+    margin-bottom: -19%;
+  }
+}
+
+
+
+
+
+@media screen and (max-width: 576px) { /*respensive CSS tableaux, taille petite (smartphone)*/
+/*Placement des dents (Charting)*/
+.dents1 { /*Dents maxillaires vestibulaire*/
+  display: grid; /*via propriété Grid*/
+  /*Détermine l'espacement entres les dents*/
+  grid-template-columns: 69px 87px 80px 58px 60px 68px 88px 82px 87px 69px 59px 60px 62px 84px 93px 80px ; 
+  margin-top: -1.6%;
+  margin-left: -4.7%;
+}
+.dents1 img { /*image dent*/
+  max-width: 170px;
+}
+.dents1 h2 { /*numéro dent*/
+  display: none; /*enlevé car ajouter directement dans le tableau*/
+  text-align: center;
+  width: 130px; 
+  font-size: large;
+}
+
+.dents2 { /*Dents mandibulaires vestibulaire*/
+  display: grid;
+  grid-template-columns: 80px 116px 51px 73px 49px 73px 57px 66px 57px 72px 49px 72px 50px 117px 78px 80px ;
+  left: 0%;
+  margin-top: 4%; 
+  margin-bottom: 1%;
+  margin-left: -3.2%;
+}
+.dents2 img {
+  max-width: 170px;
+}
+.dents2 h2 {
+  display: none;
+  text-align: center;
+  width: 130px;
+  font-size: large;
+}
+
+.dents3 { /*Dents maxillaires palatin*/
+  display: grid;
+  grid-template-columns: 89px 79px 68px 59px 59px 68px 86px 82px 87px 69px 59px 58px 80px 66px 88px 80px ; 
+  position: relative;
+  left: 2.3%;
+  margin-top: -1.7%;
+  margin-left: -7.5%;
+}
+.dents3 img {
+  max-width: 170px;
+}
+.dents3 h2 {
+  display: none;
+  text-align: center;
+  width: 130px;
+  font-size: large;
+}
+
+.dents4 { /*Dents mandibulaires linguale*/
+  display: grid; 
+  grid-template-columns: 78px 118px 52px 72px 49px 73px 57px 68px 57px 72px 49px 72px 50px 117px 78px 80px ;
+  position: absolute;
+  left: 6.7%;
+  top: 9px;
+  margin-top: 4%;
+  margin-bottom: 1%;
+  margin-left: -10.2%;
+}
+
+.dents4 img {
+  max-width: 170px;
+}
+.dents4 h2 {
+  display: none;
+  text-align: center;
+  width: 130px;
+  font-size: medium;
+}
+
+.fond {
+  width: 1200px;
+  height: 2600px;
+  margin-top: -47%;
+  margin-bottom: -20%;
+}
+
+#plaque-percentage {
+  font-size: 1em;
+}
+#saignement-percentage {
+  font-size: 1em;
+}
+
+
+/*Propriétées tableaux*/
+  table { /*toutes les table*/
+    border-collapse: collapse; /*bords*/
+    width: 100%; /*taille largeur*/
+  }
+
+  #table-container { /*Tableau dents maxillaires vestibulaire*/
+    margin-left: -0.35%; /*déplacement */
+    margin-top: 20%;
+  }
+
+  #second-table-container { /*Tableau dents mandibulaires vestibulaire*/
+    margin-top: -3%; /* marge entre les tableaux centraux */
+    margin-left: 0.4%;
+  }
+
+  #third-table-container { /*Tableau dents maxillaires palatin*/
+    margin-top: 1%; /* marge entre les tableaux centraux */
+    margin-left: 0.4%; /*déplacement */
+  }
+
+  #quatre-table-container { /*Tableau dents mandibulaires linguale*/
+    margin-top: -3%; /* marge entre les tableaux centraux */
+    margin-left: 2.6%;
+  }
+
+  #table-container,
+  #third-table-container,
+  #second-table-container,
+  #quatre-table-container {
+    width: 100%; /*taille pour tous les tableaux*/
+  }
+
+
+/* Partie pour barrer les cellules si dent manquante */
+        /* Applique l'effet de texte barré aux cellules de la première ligne des tableaux */
+        #table-container tr:first-child th:hover,
+        #table-container tr:first-child td:hover,
+        #third-table-container tr:first-child th:hover,
+        #third-table-container tr:first-child td:hover,
+        #second-table-container tr:first-child th:hover,
+        #second-table-container tr:first-child td:hover,
+        #quatre-table-container tr:first-child th:hover,
+        #quatre-table-container tr:first-child td:hover {
+            text-decoration: line-through;
+            cursor: pointer;
+        }
+        /* Applique l'effet de texte barré aux cellules de la colonne sélectionnée */
+        .diagonal-bar::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%; /* Largeur couvrant toute la cellule */
+          height: 100%; /* Hauteur couvrant toute la cellule */
+          background: linear-gradient(-45deg, transparent calc(50% - 1px), black, transparent calc(50% + 1px)); /* Crée une ligne diagonale */
+          transform-origin: top left;
+        }
+
+
+
+
+  #table-container th, #table-container td { /*pour toutes les cellules du premier tableau*/
+    border: 1px solid #b0b1d1; /*bords des cellules*/
+    font-weight: normal; /*style du texte*/
+    text-align: center; /*alignement du texte*/
+    font-size: small; /*taille du texte*/
+  }
+  #table-container th:last-child, #table-container td:last-child { /*pour les cellules de la dernière colonne du premier tableau*/
+    border-top: none; /* Supprime la bordure de droite pour la dernière colonne */
+    border-bottom : none; /*...*/
+    border-right: none;
+    border-left: none;
+    text-align: center; /*alignement du texte*/
+    font-family: inter 300; /*police du texte*/
+    font-weight: 200; /*style police*/
+    display: none;
+  }
+  #second-table-container th, #second-table-container td { /*pour toutes les cellules du second tableau*/
+    border: 1px solid #b0b1d1;
+    text-align: left;
+    font-weight: normal;
+    text-align: center;
+    font-size: small;
+  }
+  #second-table-container th:last-child, #second-table-container td:last-child { /*pour les cellules de la dernière colonne du second tableau*/
+    border-top: none; 
+    border-bottom : none;
+    border-right: none;
+    border-left: none;
+    font-size: small;
+    text-align: center;
+    font-family: inter 300;
+    font-weight: 200;
+    display: none;
+  }
+  #third-table-container th, #third-table-container td { /*pour toutes les cellules du troisième tableau*/
+    border: 1px solid #b0b1d1;
+    text-align: left;
+    font-weight: normal;
+    text-align: center;
+    font-size: small;
+  }
+  #third-table-container th:last-child, #third-table-container td:last-child { /*pour les cellules de la dernière colonne du troisième tableau*/
+    border-top: none;
+    border-bottom : none;
+    border-right: none;
+    border-left: none;
+    font-size: small;
+    text-align: center;
+    font-family: inter 300;
+    font-weight: 200;
+    display: none;
+  }
+  #quatre-table-container th, #quatre-table-container td { /*pour toutes les cellules du quatrième tableau*/
+    border: 1px solid #b0b1d1;
+    text-align: left;
+    font-weight: normal;
+    text-align: center;
+    font-size: small;
+  }
+  #quatre-table-container th:last-child, #quatre-table-container td:last-child { /*pour les cellules de la dernière colonne du quatrième tableau*/
+    border-top: none;
+    border-bottom : none;
+    border-right: none;
+    border-left: none;
+    font-size: small;
+    text-align: center;
+    font-family: inter 300;
+    font-weight: 200;
+    display: none;
+  }
+
+/* Définir la largeur de chaque colonne du premier tableau*/
+#table-container th:nth-child(1),
+#table-container td:nth-child(1){
+  width: 4.5%; /* Largeur de la première colonne */
+  border-left: none;
+}
+#table-container th:nth-child(2),
+#table-container td:nth-child(2) {
+  width: 6%; /*...*/
+}
+#table-container th:nth-child(3),
+#table-container td:nth-child(3) {
+  width: 6.5%;
+}
+#table-container th:nth-child(4),
+#table-container td:nth-child(4) {
+  width: 4.5%;
+}
+#table-container th:nth-child(5),
+#table-container td:nth-child(5) {
+  width: 5%;
+}
+#table-container th:nth-child(6),
+#table-container td:nth-child(6) {
+  width: 5%;
+}
+#table-container th:nth-child(7),
+#table-container td:nth-child(7) {
+  width: 4.5%;
+}
+#table-container th:nth-child(8),
+#table-container td:nth-child(8) {
+  width: 6%;
+}
+#table-container th:nth-child(9),
+#table-container td:nth-child(9) {
+  width: 6%; 
+}
+#table-container th:nth-child(10),
+#table-container td:nth-child(10) {
+  width: 4.5%;
+}
+#table-container th:nth-child(11),
+#table-container td:nth-child(11) {
+  width: 5%;
+}
+#table-container th:nth-child(12),
+#table-container td:nth-child(12) {
+  width: 5%;
+}
+#table-container th:nth-child(13),
+#table-container td:nth-child(13) {
+  width: 4.5%;
+}
+#table-container th:nth-child(14),
+#table-container td:nth-child(14) {
+  width: 6.5%;
+}
+#table-container th:nth-child(15),
+#table-container td:nth-child(15) {
+  width: 6%;
+}
+#table-container th:nth-child(16),
+#table-container td:nth-child(16) {
+  width: 4.5%;
+  border-right: none;
+}
+#table-container th:nth-child(17),
+#table-container td:nth-child(17) {
+  width: 13%;
+}
+
+/* Définir la largeur de chaque colonne du second tableau */
+#second-table-container th:nth-child(1),
+#second-table-container td:nth-child(1) {
+  width: 6.5%; /* Largeur de la première colonne */
+  border-left: none;
+}
+#second-table-container th:nth-child(2),
+#second-table-container td:nth-child(2) {
+  width: 7%; /*...*/
+}
+#second-table-container th:nth-child(3),
+#second-table-container td:nth-child(3) {
+  width: 7.5%;
+}
+#second-table-container th:nth-child(4),
+#second-table-container td:nth-child(4) {
+  width: 5%;
+}
+#second-table-container th:nth-child(5),
+#second-table-container td:nth-child(5) {
+  width: 4.5%;
+}
+#second-table-container th:nth-child(6),
+#second-table-container td:nth-child(6) {
+  width: 4.5%;
+}
+#second-table-container th:nth-child(7),
+#second-table-container td:nth-child(7) {
+  width: 4.5%;
+}
+#second-table-container th:nth-child(8),
+#second-table-container td:nth-child(8) {
+  width: 4%;
+}
+#second-table-container th:nth-child(9),
+#second-table-container td:nth-child(9) {
+  width: 4%; 
+}
+#second-table-container th:nth-child(10),
+#second-table-container td:nth-child(10) {
+  width: 4.5%;
+}
+#second-table-container th:nth-child(11),
+#second-table-container td:nth-child(11) {
+  width: 4.5%;
+}
+#second-table-container th:nth-child(12),
+#second-table-container td:nth-child(12) {
+  width: 4.5%;
+}
+#second-table-container th:nth-child(13),
+#second-table-container td:nth-child(13) {
+  width: 5%;
+}
+#second-table-container th:nth-child(14),
+#second-table-container td:nth-child(14) {
+  width: 7.5%;
+}
+#second-table-container th:nth-child(15),
+#second-table-container td:nth-child(15) {
+  width: 7%;
+}
+#second-table-container th:nth-child(16),
+#second-table-container td:nth-child(16) {
+  width: 6.5%;
+  border-right: none;
+}
+#second-table-container th:nth-child(17),
+#second-table-container td:nth-child(17) {
+  width: 15%;
+}
+
+/* Définir la largeur de chaque colonne du troisième tableau */
+#third-table-container th:nth-child(1),
+#third-table-container td:nth-child(1) {
+  width: 5%; /* Largeur de la première colonne */
+  border-left: none;
+}
+#third-table-container th:nth-child(2),
+#third-table-container td:nth-child(2) {
+  width: 6%; /*...*/
+}
+#third-table-container th:nth-child(3),
+#third-table-container td:nth-child(3) {
+  width: 6.5%;
+}
+#third-table-container th:nth-child(4),
+#third-table-container td:nth-child(4) {
+  width: 4.5%;
+}
+#third-table-container th:nth-child(5),
+#third-table-container td:nth-child(5) {
+  width: 4.5%;
+} 
+#third-table-container th:nth-child(6),
+#third-table-container td:nth-child(6) {
+  width: 5%;
+}
+#third-table-container th:nth-child(7),
+#third-table-container td:nth-child(7) {
+  width: 4.5%;
+} 
+#third-table-container th:nth-child(8),
+#third-table-container td:nth-child(8) {
+  width: 6%;
+}
+#third-table-container th:nth-child(9),
+#third-table-container td:nth-child(9) {
+  width: 6%; 
+}
+#third-table-container th:nth-child(10),
+#third-table-container td:nth-child(10) {
+  width: 4.5%;
+} 
+#third-table-container th:nth-child(11),
+#third-table-container td:nth-child(11) {
+  width: 5%;
+}
+#third-table-container th:nth-child(12),
+#third-table-container td:nth-child(12) {
+  width: 4.5%;
+}
+#third-table-container th:nth-child(13),
+#third-table-container td:nth-child(13) {
+  width: 4.5%;
+}
+#third-table-container th:nth-child(14),
+#third-table-container td:nth-child(14) {
+  width: 6.5%;
+}
+#third-table-container th:nth-child(15),
+#third-table-container td:nth-child(15) {
+  width: 6%;
+}
+#third-table-container th:nth-child(16),
+#third-table-container td:nth-child(16) {
+  width: 5%;
+  border-right: none;
+}
+#third-table-container th:nth-child(17),
+#third-table-container td:nth-child(17) {
+  width: 13.5%;
+}
+
+/* Définir la largeur de chaque colonne */
+#quatre-table-container th:nth-child(1),
+#quatre-table-container td:nth-child(1) {
+  width: 8%; /*...*/
+  border-left: none;
+}
+#quatre-table-container th:nth-child(2),
+#quatre-table-container td:nth-child(2) {
+  width: 7%; /*...*/
+}
+#quatre-table-container th:nth-child(3),
+#quatre-table-container td:nth-child(3) {
+  width: 7%;
+}
+#quatre-table-container th:nth-child(4),
+#quatre-table-container td:nth-child(4) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(5),
+#quatre-table-container td:nth-child(5) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(6),
+#quatre-table-container td:nth-child(6) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(7),
+#quatre-table-container td:nth-child(7) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(8),
+#quatre-table-container td:nth-child(8) {
+  width: 4%;
+}
+#quatre-table-container th:nth-child(9),
+#quatre-table-container td:nth-child(9) {
+  width: 4%; 
+}
+#quatre-table-container th:nth-child(10),
+#quatre-table-container td:nth-child(10) {
+  width: 4.5%;
+} 
+#quatre-table-container th:nth-child(11),
+#quatre-table-container td:nth-child(11) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(12),
+#quatre-table-container td:nth-child(12) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(13),
+#quatre-table-container td:nth-child(13) {
+  width: 4.5%;
+}
+#quatre-table-container th:nth-child(14),
+#quatre-table-container td:nth-child(14) {
+  width: 7%;
+}
+#quatre-table-container th:nth-child(15),
+#quatre-table-container td:nth-child(15) {
+  width: 7%;
+}
+#quatre-table-container th:nth-child(16),
+#quatre-table-container td:nth-child(16) {
+  width: 8%;
+  border-right: none;
+}
+#quatre-table-container th:nth-child(17),
+#quatre-table-container td:nth-child(17) {
+  width: 15%;
+}
+
+
+
+  /* Propriétées contenus tableaux */
+/* Niveau Gingival et Profondeur Sondage => Nombre */
+.small-input {
+  display: inline-block;
+  text-align: center; 
+  margin :0px;
+  padding : 0px;
+  border: none;
+}
+.full-width-cell input[type="text"] {
+  width: 33%; /*33% pour que les champs de saisies soient alignées horizontalement dans la totalité de la cellule*/
+}
+
+ /* Boutons cases à cocher (checkboxs) */
+ /* pour Implant */
+.custom-checkbox1 {   
+  margin: 0; 
+  padding: 0; 
+  appearance: none; /* Masque les styles par défaut des checkboxs (sinon on ne peux pas les modifier) */
+  -webkit-appearance: none; /* Masque les styles par défaut sur WebKit (Chrome, Safari) */
+  -moz-appearance: none; /* Masque les styles par défaut sur Firefox */
+  border: none; 
+  border-radius: 2px; 
+  width: 13px; /* taille pour les checkboxs */
+  height: 13px; /* hauteur pour les checkboxs */
+  background-color: #fff; 
+  position: relative;
+}
+.custom-checkbox1:checked {
+  background-color: rgb(140, 140, 140); /* Change la couleur de fond lorsque cochée */
+}
+.custom-checkbox1:hover {
+  background-color: rgba(140, 140, 140, 0.29); /* Change la couleur de fond lors du survol */
+}
+.custom-checkbox1:checked:hover { /* Garde la couleur au survol lorsque la case est cochée */
+  background-color: rgb(140, 140, 140); 
+}
+.custom-checkbox1::before { /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+  content: '';
+  position: absolute;
+  top: -2px; 
+  right: -20px;
+  bottom: -2px;
+  left: -20px;
+}
+
+/* pour Plaque */
+.custom-checkbox2 {   
+  margin: 0 1.5px 0 0; /* Ajoute une marge à droite de 5px */
+  padding: 0; 
+  appearance: none; /* Masque les styles par défaut des checkboxs (sinon on ne peux pas les modifier) */
+  -webkit-appearance: none; /* Masque les styles par défaut des checkboxs sur WebKit (Chrome, Safari) */
+  -moz-appearance: none; /* Masque les styles par défaut des checkboxs sur Firefox */
+  border: none; 
+  border-radius: 2px; /* Ajoute un coin arrondi */
+  width: 13px; /* taille pour les checkboxs */
+  height: 13px; /* hauteur pour les checkboxs */
+  background-color: #fff; /* Définit la couleur de fond */
+  position: relative;
+}
+.custom-checkbox2:checked {
+  background-color: rgb(255, 213, 0); /* Change la couleur de fond lorsque cochée */
+}
+.custom-checkbox2:hover {
+  background-color: rgba(255, 213, 0, 0.347); /* Change la couleur de fond lors du survol */
+}
+.custom-checkbox2:checked:hover { /* Garde la couleur au survol lorsque la case est cochée */
+  background-color: rgb(255, 213, 0); 
+}
+.custom-checkbox2::before { /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+  content: '';
+  position: absolute;
+  top: -4px; 
+  right: 0px;
+  bottom: -4px;
+  left: 0px;
+}
+
+/* pour Saignement */
+.custom-checkbox3 {   
+  margin: 0 1.5px 0 0; /* Ajoute une marge à droite de 5px */
+  padding: 0; 
+  appearance: none; /* Masque les styles par défaut des checkboxs (sinon on ne peux pas les modifier)*/
+  -webkit-appearance: none; /* Masque les styles par défaut sur WebKit des checkboxs (Chrome, Safari) */
+  -moz-appearance: none; /* Masque les styles par défaut sur Firefox des checkboxs */
+  border: none;
+  border-radius: 2px; 
+  width: 13px; /* taille pour les checkboxs */
+  height: 13px; /* hauteur pour les checkboxs */
+  background-color: #fff; 
+  position: relative;
+}
+.custom-checkbox3:checked {  /* Change la couleur de fond lorsque cochée */
+  background-color: rgb(227, 0, 0);
+}
+.custom-checkbox3:hover { /* Change la couleur de fond lors du survol */
+  background-color: rgba(227, 0, 0, 0.29); 
+}
+.custom-checkbox3:checked:hover { /* Garde la couleur au survol lorsque la case est cochée */
+  background-color: rgb(227, 0, 0); 
+  border-color: transparent; 
+}
+.custom-checkbox3::before { /* Augmente la surface de détection pour survole et clic par dela la checkbox */
+  content: '';
+  position: absolute;
+  top: -4px; 
+  right: 0px;
+  bottom: -4px;
+  left: 0px;
+}
+
+
+/* Styles pour les menus déroulants */
+.custom-dropdown {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background : none;
+  border: none;
+  cursor: pointer;
+  text-align: end;
+}
+
+.custom-dropdown option:checked { /* lorsque l'on clique*/
+  background-color: rgb(169, 168, 168);
+  color: white;
+}
+
+
+
+/* Modifier la couleur des icônes de flèche en violet dans les onglet utilisations */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(100%);
+}
+
+
+
+
+
+#graph1 {
+top : 215px;
+left: -12.5px;
+width: 1185px;
+height: 300px;
+}
+
+#graph2 {
+top: -245px; /* Ajustez selon votre mise en page */
+left: 14.5px;
+width: 1134px;
+height: 300px;
+margin-bottom: -19%;
+}
+
+#graph3 {
+top: 215px; /* Ajustez selon votre mise en page */
+left: -12px;
+width: 1190px;
+height: 300px;
+}
+
+#graph4 {
+top: -246px; /* Ajustez selon votre mise en page */
+left: 13.5px;
+width: 1133px;
+height: 300px;
+margin-bottom: -20%;
+}
+
+#graph1, #graph2, #graph3, #graph4 {
+position: absolute;
+z-index: 2;
+}
+
+.dents1, .dents2, .dents3, .dents4 {
+position: relative;
+z-index: 1; /* Plus élevé pour être au-dessus des graphiques */
+}
+
+/* Sélecteur plus spécifique pour les lignes de grille */
+#graph1 .c3-grid line, 
+#graph2 .c3-grid line, 
+#graph3 .c3-grid line, 
+#graph4 .c3-grid line {
+  stroke: rgba(128, 128, 128, 0.2); /* Gris avec 50% de transparence */
+  stroke-width: 1px; /* Épaisseur de la ligne */
+}
+
+#graph1 .c3-line-Profondeur-Sondage-line, 
+#graph2 .c3-line-Profondeur-Sondage-line,
+#graph3 .c3-line-Profondeur-Sondage-line,
+#graph4 .c3-line-Profondeur-Sondage-line {
+stroke-width: 2px; /* Épaisseur pour la ligne de Profondeur Sondage */
+}
+#graph1 .c3-line-Niveau-Gingival,
+#graph2 .c3-line-Niveau-Gingival,
+#graph3 .c3-line-Niveau-Gingival,
+#graph4 .c3-line-Niveau-Gingival {
+stroke-width: 2px; /* Épaisseur pour la ligne de Niveau Gingival */
+}
+
+
+
+.carousel-control-prev,
+.carousel-control-next {
+z-index: 5; /* Un z-index plus élevé pour s'assurer que les boutons de défilements sont au-dessus des autres éléments */
+}
+
+.carousel-inner {
+  overflow-y: auto;
+}
+
+}
+
+
+/* Propriétés du conteneur de défilement horizontal */
+.scroll-container {
+  overflow-x: auto;
+  padding: 10px;
+  border: 2px solid #8368e8; /* Couleur de la bordure */
+  border-radius: 16px;
+  background-color: rgba(239, 240, 255, 0.91);
+  margin-left: 20px;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.scroll-container .fond {
+  display: inline-block;
+  white-space: normal;
+}
+
+/* Styles spécifiques pour les petits écrans */
+@media screen and (max-width: 576px) {
+  .scroll-container {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .scroll-container .fond {
+    width: 1200px; /* Largeur adaptée pour le contenu */
+  }
+}
+
+
+
+/* Animation d'impression et de téléchargement */
+#Charting, .fond {
+  background-color: transparent !important; /* Supprimez tout fond appliqué lors impression/téléchargement */
+}
+
+/* Loading overlay */
+.loading-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent gray background */
+  z-index: 1000; /* Make sure it appears above everything */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Loading dots animation */
+.loading-dots {
+  display: flex;
+  justify-content: space-around;
+  width: 60px;
+}
+
+.loading-dots .dot {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+/* Animation for dots */
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-15px);
+  }
+}
+
+.loading-dots .dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loading-dots .dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
