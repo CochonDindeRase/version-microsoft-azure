@@ -22,10 +22,11 @@ async function renderSectionImages(sectionClass, jsonFilePath, prefix) {
 }
 
 // Rendu des images
-renderSectionImages(".dents1", "./maxillairevestibulaire.json", "maxV");
-renderSectionImages(".dents2", "./mandibulevestibulaire.json", "mandV");
-renderSectionImages(".dents3", "./maxillairepalatin.json", "maxP");
-renderSectionImages(".dents4", "./mandibulepalatin.json", "mandP");
+renderSectionImages(".dents1", "/public/maxillairevestibulaire.json", "maxV");
+renderSectionImages(".dents2", "/public/mandibulevestibulaire.json", "mandV");
+renderSectionImages(".dents3", "/public/maxillairepalatin.json", "maxP");
+renderSectionImages(".dents4", "/public/mandibulepalatin.json", "mandP");
+
 
 
   
