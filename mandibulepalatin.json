@@ -2,12 +2,12 @@
     {
         "id": 1,
         "nom": "38",
-        "image": "38P.PNG"
+        "image": "https://charting-vocal-bngza5c3hybbfpeh.westeurope-01.azurewebsites.net/dents/38P.PNG"
     },
     {
         "id": 2,
         "nom": "37",
-        "image": "37P.PNG"
+        "image": "dents/37P.PNG"
     },
     {
         "id": 3,
