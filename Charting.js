@@ -22,10 +22,10 @@ async function renderSectionImages(sectionClass, jsonFilePath, prefix) {
 }
 
 // Rendu des images
-renderSectionImages(".dents1", "./maxillairevestibulaire.json", "maxV");
-renderSectionImages(".dents2", "./mandibulevestibulaire.json", "mandV");
-renderSectionImages(".dents3", "./maxillairepalatin.json", "maxP");
-renderSectionImages(".dents4", "./mandibulepalatin.json", "mandP");
+renderSectionImages(".dents1", "./data/maxillairevestibulaire.json", "maxV");
+renderSectionImages(".dents2", "./data/mandibulevestibulaire.json", "mandV");
+renderSectionImages(".dents3", "./data/maxillairepalatin.json", "maxP");
+renderSectionImages(".dents4", "./data/mandibulepalatin.json", "mandP");
 
   
   // Création tableau pour les dents maxillaires
