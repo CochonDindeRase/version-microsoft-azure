@@ -2,7 +2,7 @@
     {
         "id": 1,
         "nom": "38",
-        "image": "dents/38P.PNG"
+        "image": "./dents/38P.PNG"
     },
     {
         "id": 2,
